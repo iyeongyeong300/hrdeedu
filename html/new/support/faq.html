@@ -1,0 +1,175 @@
+<? include "../include/header.html"; ?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_support.html"; ?>
+
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>학습지원센터<span>></span>자주묻는 질문
+        </div>
+    </div>
+
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a id="" href="../support/notice.html" class="tab_btn">공지사항</a>
+            </li>
+            <li>
+                <a id="" href="../support/faq.html" class="tab_btn on">자주묻는 질문</a>
+            </li>
+            <li>
+                <a id="" href="../support/ask.html" class="tab_btn">1:1 문의</a>
+            </li>
+            <li>
+                <a id="" href="../support/remote.html" class="tab_btn">PC 원격지원</a>
+            </li>
+        </ul>
+    </div>
+
+    <style>
+    .faq .faqBody .article p {border-top:initial;}
+    </style>
+
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="faq.html?FaqCate=&col=<?=$col?>&sw=<?=$sw?>" class="tab_btn <?if(!$FaqCate) {?>on<?}?>">전체</a>
+            </li>
+            <?
+            while (list($key,$value)=each($Faq_array)) {
+            ?>
+            <li>
+                <a href="faq.html?FaqCate=<?=$key?>&col=<?=$col?>&sw=<?=$sw?>" class="tab_btn <?if($FaqCate==$key) {?>on<?}?>"><?=$value?></a>
+            </li>
+            <?
+            }
+            ?>
+        </ul>
+    </div>
+
+    <?
+    $pg = Replace_Check_XSS2($pg);
+    $col = Replace_Check_XSS2($col);
+    $sw = Replace_Check_XSS2($sw);
+    $FaqCate = Replace_Check_XSS2($FaqCate);
+
+    $MainSend = Replace_Check_XSS2($MainSend);
+    $view_num = Replace_Check_XSS2($view_num);
+
+    ##-- 페이지 조건
+    if(!$pg) $pg = 1;
+    $page_size = 25;
+    $block_size = 10;
+
+    ##-- 검색 조건
+    $where = array();
+
+    if($sw){
+        $where[] = "(Title LIKE '%$sw%' OR Content LIKE '%$sw%')";
+    }
+
+    $where[] = "Del='N'";
+    $where[] = "UseYN='Y'";
+
+    if($FaqCate) {
+    $where[] = "Category='$FaqCate'";
+    }
+
+    $where = implode(" AND ",$where);
+    if($where) $where = "WHERE $where";
+
+
+    ##-- 정렬조건
+    if($orderby=="") {
+        $str_orderby = "ORDER BY OrderByNum ASC, RegDate ASC";
+    }else{
+        $str_orderby = "ORDER BY $orderby";
+    }
+
+    ##-- 검색 등록수
+    $Sql = "SELECT COUNT(*) FROM Faq $where";
+    $Result = mysqli_query($connect, $Sql);
+    $Row = mysqli_fetch_array($Result);
+    $TOT_NO = $Row[0];
+
+
+    ##-- 페이지 클래스 생성
+    include_once("../include/include_page.php");
+
+    $PAGE_CLASS = new Page($pg,$TOT_NO,$page_size,$block_size); ##-- 페이지 클래스
+    $BLOCK_LIST = $PAGE_CLASS->blockList(); ##-- 페이지 이동관련
+    $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감소
+    ?>
+    <!--<form name="listScriptForm" method="GET" action="<?=$_SERVER['PHP_SELF']?>">
+    <input type="hidden" name="col" value="<?=$col?>">
+    <input type="hidden" name="sw" value="<?=$sw?>">
+    <input type="hidden" name="pg" value="<?=$pg?>">
+    <input type="hidden" name="orderby" value="<?=$orderby?>">
+    <input type="hidden" name="FaqCate" value="<?=$FaqCate?>">
+    </form>-->
+    <?if($MainSend=="Y") {?>
+    <script type="text/javascript">
+    <!--
+    $(document).ready(function() {
+        <? if ($view_num) { ?>
+        FaqView(<?=$view_num?>);
+        <? } ?>
+    });
+    //-->
+    </script>
+    <?}?>
+
+    <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+    <div class="table_box mt30">
+        <div class="table_box_form ac">
+            <span class="search_btn"></span><input name="sw" id="sw" class="inp_01" type="text"><span class="btn_03" onclick="Javascript:BoardSearch();">검색</span>
+        </div>
+    </div>
+    </form>
+
+
+    <div class="faq">
+        <div class="faqHeader">
+            <!--button type="button" class="showAll">답변 모두 여닫기</button-->
+        </div>
+        <ul class="faqBody">
+            <?
+            $i = 0;
+            $SQL = "SELECT * FROM Faq $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+            $QUERY = mysqli_query($connect, $SQL);
+            if($QUERY && mysqli_num_rows($QUERY))
+            {
+                while($ROW = mysqli_fetch_array($QUERY))
+                {
+                    extract($ROW);
+
+                    $Content = stripslashes($ROW['Content']);
+            ?>
+            <li class="article" id="a1" style="border-top: 1px solid #e2e2e4">
+                <div class="q">
+                    <a href="Javascript:FaqView(<?=$i?>);">
+                        <span class="title">Q. <?=$Faq_array[$Category]?></span>
+                        <span class="content"><?=$Title?></span>
+                    </a>
+                </div>
+                <div id="ContentElement" class="a" style="border-top: 1px solid #e2e2e4; display:none">
+                    <div class="title">A. 답변</div>
+                    <div class="content"><?=$Content?></div>
+                </div>
+            </li>
+            <?
+            $i++;
+                }
+            }else{
+            ?>
+            <li>
+                <p style='text-align:center; height:80px'><br><br>등록된 자주묻는질문이 없습니다.</p>
+            </li>
+            <? } ?>
+        </ul>
+    </div>
+
+    <?=$BLOCK_LIST?>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

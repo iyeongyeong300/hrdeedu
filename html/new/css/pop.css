@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.poplayer_area{position: relative;}
+.poplayer_area > .title{background-color: #f5f5f5;padding: 30px 20px; color: #222222;font-size: 22px;color: #222222;font-weight: 400}
+.poplayer_area > .title > .close{position: absolute; top:26px;right: 26px;width: 26px;height: 26px;background:url(/new/images/common/x_black.svg) no-repeat;}
+.poplayer_area .content{padding: 20px 20px 20px 20px;}
+
+.questionpop_area{}
+.questionpop_area dl{display:flex; border-bottom: 1px solid #e2e2e4;}
+.questionpop_area dt{width: 20%; padding: 20px;vertical-align: middle;align-items: center;}
+.questionpop_area dd{width: 80%;padding: 20px 20px 20px 0px;display:flex; align-items:center;}
+.questionpop_area dd input{width: 100%;padding: 20px 20px; height: 40px; line-height: 38px; padding:0 13px; font-size:14px; border:1px solid #000;}
+.questionpop_area dd select{padding: 20px 10px; height: 40px; line-height: 38px; padding:0 13px; font-size:14px; border:1px solid #000;
+    -webkit-appearance:none; /* for chrome */
+    -moz-appearance:none; /*for firefox*/
+     appearance:none; background:url('/new/images/common/select_arrow.png') no-repeat 97% 50%/7px auto;}
+
+.questionpop_area .inp_content{height: 262px; line-height: 38px; padding:0 13px; font-size:14px; border:1px solid #000;}
+.questionpop_area .inp_code{width: 160px;}
+.questionpop_area select{width:100%;}
+
+.questionpop_area .safecode{color: #ff0000; font-size: 24px; padding: 0 10px;}
+.questionpop_area .assent{width: 100%}
+.questionpop_area .assent input{width:18px;height: 18px}
+.questionpop_area .privacy_area{display: none;border: 1px solid #e2e2e4;width:100%;height:200px;overflow: auto;padding: 20px;margin-top: 20px;}
+
+
+.poplayer_area{}
+.poplayer_area .playfootarea{padding: 10px 20px;display: flex; justify-content: space-between;background-color: #f5f5f5;}
+.poplayer_area .playfootarea .footbtn{}
+.poplayer_area .playfootarea .footbtn button{margin-left: 10px;}
+.poplayer_area .playfootarea .time{border-radius: 3px;padding: 8px 20px;border: 1px solid #4ca4d4;font-weight: 500px;}
+
+
+

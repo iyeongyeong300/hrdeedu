@@ -1,0 +1,17 @@
+hr {margin: 55px 0 40px 0; border: 0; border-top: 2px solid #4ca4d4;}
+.line30 {margin: 30px 0; width: 100%; border: 1px solid #ddd; border-left: 0px; border-right: 0px; border-bottom: 0px;}
+h3{font-size: 34px; line-height:34px; font-weight: 700; text-align: center; letter-spacing: -1px;}
+.contents_wrap {padding: 40px 0 80px 0;}
+
+.title_area{padding-top: 50px; padding-bottom: 50px;}
+.title_area title h3 {}
+.title_area .stitle {margin-top: 12px; text-align:center;font-size: 18px;}
+
+.navigation_wrap {position:absolute; left:10px; top:20px;}
+.navigation{color: #777777;}
+.navigation span{padding: 0 8px;}
+.navigation .home_icon {width: 18px; height: 14px; background: url('/new/images/common/hoom.png') no-repeat; background-position: 0% 50%;}
+
+.icon_play_on {display:inline-block; width: 34px; height:34px; background: url(/new/images/common/icon_play_on.svg) no-repeat; background-size: cover; cursor: pointer;}
+.icon_play_off {display:inline-block; width: 34px; height:34px; background: url(/new/images/common/icon_play_off.svg) no-repeat; background-size: cover;}
+

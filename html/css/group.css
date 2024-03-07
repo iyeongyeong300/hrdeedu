@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+
+.groupIntro { position:relative; margin-top:30px; font-size:16px; line-height:28px; text-align:justify;}
+.groupIntro p { margin-top:20px;}
+
+.Greetings { position:relative; margin-top:40px; font-size:16px; line-height:28px; text-align:justify;}
+.Greetings div { vertical-align:top; display:table-cell;}
+.Greetings div:nth-child(1) {}
+.Greetings div:nth-child(2) { padding:80px 0 0 40px;}
+.Greetings div:nth-child(2) .photo {}
+.Greetings div:nth-child(2) .photo img { width:350px; -webkit-border-radius:14px; -moz-border-radius:14px; border-radius:14px;}
+
+.groupPr { position:relative; margin-top:30px;}
+.groupPr img { -webkit-border-radius:14px; -moz-border-radius:14px; border-radius:14px;}
+.groupPr strong { font-size:19px;}
+.groupPr .ty01 { margin-top:15px;}
+.groupPr .ty01 li { width:100%; padding:10px 0; display:table;}
+.groupPr .ty01 li dd { vertical-align:middle; display:table-cell;}
+.groupPr .ty01 li dd:nth-child(1) { width:430px;}
+.groupPr .ty01 li:last-child { padding-bottom:0;}
+.groupPr .ty02 { width:100%; margin-top:5px; font-size:0; line-height:normal;}
+.groupPr .ty02 li { padding:20px 20px 0 0; vertical-align:top; display:inline-block;}
+.groupPr .ty02 li:nth-child(4n) { padding-right:0;}
+.groupPr .ty02 li img { border:solid 1px #e2e2e2; max-width:230px;}
+
+
+.Location { position:relative;}
+.Location h4 { position:relative; font-size:24px; color:#0f6caf; font-weight:800; letter-spacing:-0.04em; margin-top:50px; background:url(../images/common/h4_bul.png) no-repeat; padding-top:20px;}
+.Location ul { margin-top:25px;}
+.Location ul li { position:relative; margin-bottom:7px; padding-left:100px; line-height:26px;}
+.Location ul li strong { position:absolute; top:0; left:0; background:#0f97af; width:80px; color:#fff; font-size:13px; text-align:center; display:inline-block; -webkit-border-radius:14px; -moz-border-radius:14px; border-radius:14px;}
+.Location .add { background:url(../images/sub/group_location_back01.png) no-repeat right top;}
+.Location .tra { background:url(../images/sub/group_location_back02.png) no-repeat right top;}

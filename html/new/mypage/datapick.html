@@ -1,0 +1,187 @@
+<?
+$list_page = "datapick.html";
+$read_page = "datapick_view.html";
+?>
+<? include "../include/header.html"; ?>
+<div class="wrap"><!-- wrap -->
+<? include "../include/subtitle_mypage.html"; ?>
+   
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>나의학습실<span>></span>자료/상담관리<span>></span>찜한 학습자료
+        </div>
+    </div>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="../mypage/lecture.html" class="tab_btn">수강관리</a>
+            </li>
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn">수강신청/결제관리</a>
+            </li>
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn on">자료/상담관리</a>
+            </li>
+            <?if($LoginEduManager=="Y") {?>
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn">교육담당자</a>
+            </li>         
+            <? } ?>
+            <li>
+                <a href="../mypage/memberinfo.html" class="tab_btn">회원정보관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn on">찜한 학습자료</a>
+            </li>
+			<li>
+                <a href="../mypage/discussion.html" class="tab_btn">토론방</a>
+            </li>
+            <li>
+                <a href="../mypage/advicelst.html" class="tab_btn">1:1 상담 리스트</a>
+            </li>
+            <li>
+                <a href="../mypage/studylst.html" class="tab_btn">학습 상담 리스트</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <?
+    $Category = Replace_Check($Category);
+    if (!$Category) $Category = "경영·사무";
+
+    $pg = Replace_Check_XSS2($pg);
+    $col = Replace_Check_XSS2($col);
+    $sw = Replace_Check_XSS2($sw);
+
+    ##-- 페이지 조건
+    if(!$pg) $pg = 1;
+    $page_size = 25;
+    $block_size = 10;
+
+    ##-- 검색 조건
+    $where = array();
+
+    if($sw){
+        $where[] = "(Title LIKE '%$sw%' OR Content LIKE '%$sw%')";
+    }
+
+    $where[] = "Del='N'";
+    $where[] = "UseYN='Y'";
+    $where[] = "Notice='N'";
+
+    $where[] = "ID='$LoginMemberID'";
+
+    $where = implode(" AND ",$where);
+    if($where) $where = "WHERE $where";
+
+
+    ##-- 정렬조건
+    if($orderby=="") {
+        $str_orderby = "ORDER BY RegDate DESC, idx DESC";
+    }else{
+        $str_orderby = "ORDER BY $orderby";
+    }
+
+    ##-- 검색 등록수
+    $Sql = "SELECT COUNT(*) FROM StudyPDS_Scrap AS a LEFT OUTER JOIN StudyPDS AS b ON a.idx=b.idx $where";
+    $Result = mysqli_query($connect, $Sql);
+    $Row = mysqli_fetch_array($Result);
+    $TOT_NO = $Row[0];
+
+
+    ##-- 페이지 클래스 생성
+    include_once("../include/include_page.php");
+
+    $PAGE_CLASS = new Page($pg,$TOT_NO,$page_size,$block_size); ##-- 페이지 클래스
+    $BLOCK_LIST = $PAGE_CLASS->blockList(); ##-- 페이지 이동관련
+    $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감소
+    ?>
+    
+    <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+    <div class="table_box mt30">
+        <div class="table_box_form ac">
+            <span class="search_btn"></span><input name="sw" id="sw" class="inp_01" type="text"><span class="btn_03" onclick="Javascript:BoardSearch();">검색</span>
+        </div>
+    </div>
+    </form>
+    <table class="tbl_typeA mt40" border="0" cellspacing="0">
+        <colgroup>
+            <col width="10%">
+            <col>
+            <col width="7%">
+            <col width="15%">
+            <col width="10%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">파일</th>
+                <th scope="col">등록일</th>
+                <th scope="col">조회</th>
+            </tr>
+        </thead>
+        <tbody>
+              <?
+            $SQL = "SELECT a.idx, b.Title, b.FileName1, b.RegDate, b.ViewCount, b.Content FROM StudyPDS_Scrap AS a LEFT OUTER JOIN StudyPDS AS b ON a.idx=b.idx $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+            $QUERY = mysqli_query($connect, $SQL);
+            if($QUERY && mysqli_num_rows($QUERY))
+            {
+                while($ROW = mysqli_fetch_array($QUERY))
+                {
+                    extract($ROW);
+
+                    $Title = strcut_utf8($Title,64);
+            ?>
+            <tr>
+                <td><span class="font_4ca4d4"><?=$PAGE_UNCOUNT--?></span></td>
+                <td class="al">
+                    <a href="Javascript:readRun('<?=$idx?>');"><?=$Title?></a>
+                </td>
+                <td><?if($FileName1) {?><img src="../images/common/filedown.png"><?}?></td>
+                <td><?=substr($RegDate,0,10)?></td>
+                <td><?=$ViewCount?></td>
+            </tr>
+        <?
+            }
+        }else{
+        ?>
+        <tr>
+          <td colspan="5">찜한 학습자료가 없습니다.</td>
+        </tr>
+        <? } ?>
+        </tbody>
+    </table>
+
+    <?=$BLOCK_LIST?>  
+ 
+</div><!-- wrap --> 
+<? include "../include/footer.html"; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

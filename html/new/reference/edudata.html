@@ -1,0 +1,177 @@
+<?
+$list_page = "edudata.html";
+$read_page = "edudata_view.html";
+?>
+<? include "../include/header.html"; ?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_reference.html"; ?>
+
+    <?
+    $EduCate = Replace_Check($EduCate);
+	if (!$EduCate) $EduCate = "A";
+	$EduCateName = $Edudata_array[$EduCate];
+	?>
+	
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>학습자료실<span>><?=$EduCateName?></span>
+        </div>
+    </div>
+
+	<?
+    $pg = Replace_Check_XSS2($pg);
+    $col = Replace_Check_XSS2($col);
+    $sw = Replace_Check_XSS2($sw);
+
+    ##-- 페이지 조건
+    if(!$pg) $pg = 1;
+    $page_size = 25;
+    $block_size = 10;
+
+    ##-- 검색 조건
+    $where = array();
+
+    if($sw){
+        $where[] = "(Title LIKE '%$sw%' OR Content LIKE '%$sw%')";
+    }
+	
+	if($EduCate) {
+		$where[] = "Category='$EduCate'";
+    }
+
+    $where[] = "Del='N'";
+    $where[] = "UseYN='Y'";
+    $where[] = "Notice='N'";
+
+    $where = implode(" AND ",$where);
+    if($where) $where = "WHERE $where";
+
+
+    ##-- 정렬조건
+    if($orderby=="") {
+        $str_orderby = "ORDER BY RegDate DESC, idx DESC";
+    }else{
+        $str_orderby = "ORDER BY $orderby";
+    }
+
+    ##-- 검색 등록수
+    $Sql = "SELECT COUNT(*) FROM StudyPDS $where";
+    $Result = mysqli_query($connect, $Sql);
+    $Row = mysqli_fetch_array($Result);
+    $TOT_NO = $Row[0];
+
+
+    ##-- 페이지 클래스 생성
+    include_once("../include/include_page.php");
+
+    $PAGE_CLASS = new Page($pg,$TOT_NO,$page_size,$block_size); ##-- 페이지 클래스
+    $BLOCK_LIST = $PAGE_CLASS->blockList(); ##-- 페이지 이동관련
+    $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감소
+    ?>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="<?=$list_page?>?EduCate=A" class="tab_btn <? if ($EduCate=='A') echo 'on';?>">경영·사무</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=B" class="tab_btn <? if ($EduCate=='B') echo 'on';?>">보건·의료</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=C" class="tab_btn <? if ($EduCate=='C') echo 'on';?>">보육</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=D" class="tab_btn <? if ($EduCate=='D') echo 'on';?>">4차 산업</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=E" class="tab_btn <? if ($EduCate=='E') echo 'on';?>">법정의무·기타</a>
+            </li>
+        </ul>
+    </div>
+
+    <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+    <input type="hidden" name="EduCate" value="<?=$EduCate?>">
+    <div class="table_box mt30">
+        <div class="table_box_form ac">
+            <span class="search_btn"></span><input name="sw" id="sw" class="inp_01" type="text"><span class="btn_03" onclick="Javascript:BoardSearch();">검색</span>
+        </div>
+    </div>
+    </form>
+    <table class="tbl_typeA mt40" border="0" cellspacing="0">
+        <colgroup>
+            <col width="7%">
+            <col>
+            <col width="7%">
+            <col width="10%">
+            <col width="7%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">파일</th>
+                <th scope="col">등록일</th>
+                <th scope="col">조회</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?
+        $SQL = "SELECT * FROM StudyPDS WHERE Del='N' AND Notice='Y' ORDER BY RegDate DESC, idx DESC";
+        $QUERY = mysqli_query($connect, $SQL);
+        if($QUERY && mysqli_num_rows($QUERY))
+        {
+            while($ROW = mysqli_fetch_array($QUERY))
+            {
+                extract($ROW);
+
+                $Title = strcut_utf8($Title,64);
+        ?>
+            <tr>
+                <td><span class="font_4ca4d4">공지</span></td>
+                <td class="al">
+                    <a href="Javascript:readRun('<?=$idx?>');"><?=$Title?></a>
+                </td>
+                <td><?if($FileName1) {?><img src="../images/common/filedown.png"><?}?></td>
+                <td><?=substr($RegDate,0,10)?></td>
+                <td><?=$ViewCount?></td>
+            </tr>
+        <?
+            }
+        }
+        ?>
+
+        <?
+        $SQL = "SELECT * FROM StudyPDS $where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+        $QUERY = mysqli_query($connect, $SQL);
+        if($QUERY && mysqli_num_rows($QUERY))
+        {
+            while($ROW = mysqli_fetch_array($QUERY))
+            {
+                extract($ROW);
+
+                $Title = strcut_utf8($Title,64);
+        ?>
+            <tr>
+                <td><span class="font_4ca4d4"><?=$PAGE_UNCOUNT--?></span></td>
+                <td class="al">
+                    <a href="Javascript:readRun('<?=$idx?>');"><?=$Title?></a>
+                </td>
+                <td><?if($FileName1) {?><img src="../images/common/filedown.png"><?}?></td>
+                <td><?=substr($RegDate,0,10)?></td>
+                <td><?=$ViewCount?></td>
+            </tr>
+        <?
+            }
+        }else{
+        ?>
+        <!--<tr>
+          <td colspan="5">등록된 학습자료실이 없습니다.</td>
+        </tr>-->
+        <? } ?>
+        </tbody>
+    </table>
+
+    <?=$BLOCK_LIST?>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

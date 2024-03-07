@@ -1,0 +1,146 @@
+#_chatbot * {
+  box-sizing: border-box;
+}
+
+#_chatbot body {
+  font-family: 'Noto Sans KR','Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, Helvetica,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	background-color: rgba(223, 242, 247, .5);
+	height: 100%;
+	margin: 0;
+}
+
+#_chatbot span {
+	padding-right: 15px;
+	padding-left: 15px;
+
+	font-size:14px;
+}
+
+#_chatbot .container {
+	display: flex;
+  justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+#_chatbot .chat {
+	margin-top:50px;
+	padding:10px;
+	height: 550px;
+	width: 330px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #ccc;
+    border-radius: 10px;
+	background:#fff;
+} 
+
+#_chatbot  ::-webkit-input-placeholder { 
+	color: .711 
+}
+ 
+#_chatbot #chat input { 
+	border: 0; 
+	padding: 15px; 
+	margin-left: auto;
+	border-radius: 10px; 
+	width:100%;
+	border: 2px solid #000;
+    font-size:14px;
+}
+
+#_chatbot .messages {
+	display: flex;
+	flex-direction: column;
+	overflow: scroll;
+	height: 90%;
+	width: 100%;
+	background-color: white;
+	padding: 15px;
+	margin: 15px;
+	border-radius: 10px;
+}
+
+#_chatbot #bot {
+	margin-left: auto;
+}
+
+#_chatbot .recommend{
+	border-radius: 15px;
+    margin: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    background: #000;
+    font-size:13px;
+}
+
+#_chatbot @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(./font/NotoSansKR-Thin.woff2) format('woff2'),url(./font/NotoSansKR-Thin.woff) format('woff'),url(./font/NotoSansKR-Thin.otf) format('opentype');}
+
+#_chatbot @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(./font/NotoSansKR-Light.woff2) format('woff2'),url(./font/NotoSansKR-Light.woff) format('woff'),url(./font/NotoSansKR-Light.otf) format('opentype');}
+
+#_chatbot @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(./font/NotoSansKR-Regular.woff2) format('woff2'),url(./font/NotoSansKR-Regular.woff) format('woff'),url(./font/NotoSansKR-Regular.otf) format('opentype');}
+
+#_chatbot @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(./font/NotoSansKR-Medium.woff2) format('woff2'),url(./font/NotoSansKR-Medium.woff) format('woff'),url(./font/NotoSansKR-Medium.otf) format('opentype');}
+
+#_chatbot @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(./font/NotoSansKR-Bold.woff2) format('woff2'),url(./font/NotoSansKR-Bold.woff) format('woff'),url(./font/NotoSansKR-Bold.otf) format('opentype');}
+
+#_chatbot @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(./font/NotoSansKR-Black.woff2) format('woff2'),url(./font/NotoSansKR-Black.woff) format('woff'),url(./font/NotoSansKR-Black.otf) format('opentype');}
+
+#_chatbot .bot {
+	font-family: 'Noto Sans KR', Consolas, 'Courier New', Menlo, source-code-pro, Monaco,  
+	monospace;
+}
+
+#_chatbot .avatar {
+	height: 25px;
+}
+
+#_chatbot .response {
+	display: flex;
+	align-items: center;
+	margin: 1%;
+
+}
+#_chatbot .response > span {
+    align-items: center;
+    margin: 1%;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px 10px;
+    border: 2px solid #ccc;
+    color: #000;
+    font-size:13px;
+}
+
+#_chatbot .user{text-align:right;margin-left: auto;}
+/* Mobile */
+
+@media only screen and (max-width: 980px) {
+  #_chatbot .container {
+		flex-direction: column; 
+		justify-content: flex-start;
+	}
+    #_chatbot .chat {
+		width: 75vw;
+		margin: 10vw;
+	}
+}
+
+#_chatbot ._chatbotBtn{
+    position: absolute;
+    left: 93%;
+    width: 10%;
+    height: 100%;
+    bottom: 80px;
+    color: white;
+    font-size: large;
+}
+
+#_chatbot .ui-autocomplete{z-index:9999}

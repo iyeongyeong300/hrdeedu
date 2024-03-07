@@ -1,0 +1,146 @@
+<?
+$list_page = "edudata.html";
+$read_page = "edudata_view.html";
+?>
+<? include "../include/header.html"; ?>
+<?
+$idx = Replace_Check($idx);
+
+$Sql = "UPDATE StudyPDS SET ViewCount=ViewCount+1 WHERE idx=$idx";
+$Row = mysqli_query($connect, $Sql);
+
+$Sql = "SELECT * FROM StudyPDS WHERE idx=$idx AND UseYN='Y' AND Del='N'";
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+
+if($Row) {
+    $Notice = $Row['Notice'];
+    $EduCategory = $Row['Category'];
+    $Title = $Row['Title'];
+    $Content = stripslashes($Row['Content']);
+    $FileName1 = $Row['FileName1'];
+    $RealFileName1 = $Row['RealFileName1'];
+    $FileName2 = $Row['FileName2'];
+    $RealFileName2 = $Row['RealFileName2'];
+    $FileName3 = $Row['FileName3'];
+    $RealFileName3 = $Row['RealFileName3'];
+    $FileName4 = $Row['FileName4'];
+    $RealFileName4 = $Row['RealFileName4'];
+    $FileName5 = $Row['FileName5'];
+    $RealFileName5 = $Row['RealFileName5'];
+    $ViewCount = $Row['ViewCount'];
+    $RegDate = $Row['RegDate'];
+	
+	$EduCategoryName = $Edudata_array[$EduCategory];
+}else{
+?>
+<script type="text/javascript">
+<!--
+    location.href="edudata.php";
+//-->
+</script>
+<?
+exit;
+}
+
+$BOARD_TITLE = $Title." > ";
+?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_reference.html"; ?>
+
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>학습자료실<span>></span><?=$EduCategoryName?>
+        </div>
+    </div>
+
+    <div class="tabList_area">
+        <ul class="tabList">
+            <!--<li>
+                <a id="" href="../reference/edudata.html" class="tab_btn on">경영·사무</a>
+            </li>
+            <li>
+                <a id="" href="" class="tab_btn">보건·의료</a>
+            </li>
+            <li>
+                <a id="" href="" class="tab_btn">보육</a>
+            </li>
+            <li>
+                <a id="" href="" class="tab_btn">4차 산업</a>
+            </li>
+            <li>
+                <a id="" href="" class="tab_btn">기타</a>
+            </li>-->
+            <li>
+                <a href="<?=$list_page?>?EduCate=A" class="tab_btn <? if ($EduCategory=='A') echo 'on';?>">경영·사무</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=B" class="tab_btn <? if ($EduCategory=='B') echo 'on';?>">보건·의료</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=C" class="tab_btn <? if ($EduCategory=='C') echo 'on';?>">보육</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=D" class="tab_btn <? if ($EduCategory=='D') echo 'on';?>">4차 산업</a>
+            </li>
+            <li>
+                <a href="<?=$list_page?>?EduCate=E" class="tab_btn <? if ($EduCategory=='E') echo 'on';?>">법정의무·기타</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="info_area mt30">
+        <dl class="info_tilte">
+            <dt class="font_4ca4d4 mr15"><?if($Notice=="Y") {?>공지<?}?></dt>
+            <dd><?=$Title?></dd>
+        </dl>
+        <div class="info_date">
+            <dl>
+                <dt>등록일</dt>
+                <dd><?=substr($RegDate,0,10)?></dd>
+                <dd>I</dd>
+                <dt>조회</dt>
+                <dd><?=$ViewCount?></dd>
+            </dl>
+            <div class="infofile">
+                <?if($FileName1) { ?><div class="mb10"><a href="../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=1"><span class="downicon cursor"><?=$RealFileName1?></span></a></div><?}?>
+                <?if($FileName2) { ?><div class="mb10"><a href="../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=2"><span class="downicon cursor"><?=$RealFileName2?></span></a></div><?}?>
+                <?if($FileName3) { ?><div class="mb10"><a href="../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=3"><span class="downicon cursor"><?=$RealFileName3?></span></a></div><?}?>
+                <?if($FileName4) { ?><div class="mb10"><a href="../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=4"><span class="downicon cursor"><?=$RealFileName4?></span></a></div><?}?>
+                <?if($FileName5) { ?><div class="mb10"><a href="../include/download.php?idx=<?=$idx?>&code=StudyPDS&file=5"><span class="downicon cursor"><?=$RealFileName5?></span></a></div><?}?>
+            </div>
+        </div>
+
+        <div class="info_content">
+            <?=$Content?>
+        </div>
+        <div class="ac mt30">
+            <?
+            if($LoginMemberID) {
+				$Sql = "SELECT COUNT(*) FROM StudyPDS_Scrap WHERE idx=$idx AND ID='$LoginMemberID'";
+				$Result = mysqli_query($connect, $Sql);
+				$Row = mysqli_fetch_array($Result);
+
+				$ScrapCount = $Row[0];
+            ?>
+            <?if($ScrapCount<1) {?>
+                <button type="button" class="btn_01" onclick="Javascript:StudyPDS_Scrap(<?=$idx?>,'Regist');">학습자료 찜하기</button>
+            <?}else{?>
+                <button type="button" class="btn_01" onclick="Javascript:StudyPDS_Scrap(<?=$idx?>,'Delete');">학습자료 찜 취소하기</button>
+            <?}?>
+            <?
+            }else{
+            ?>
+                <button type="button" class="btn_01" onclick="Javascript:LoginCheck">학습자료 찜하기</button>
+            <?
+            }
+            ?>
+
+            <button type="button" class="btn_01g ml10" onclick="window.location.href='<?=$list_page?>?pg=<?=$pg?>&sw=<?=$sw?>&EduCate=<?=$EduCategory?>'">목록</button>
+        </div>
+        <div mt30></div>
+    </div>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.question_area{}
+.question_area dl{display: flex; border-bottom: 1px solid #e2e2e4;}
+.question_area dt{width: 120px; padding: 30px 0px 30px 20px; display: flex; align-items: center;}
+.question_area dd{padding: 20px 0px; display: flex; align-items: center; flex-grow: 1;}
+.question_area dd input{padding: 20px 20px; height: 40px; line-height: 38px; padding:0 13px; font-size:14px; border:1px solid #000;}
+.question_area dd select{padding: 20px 10px; height: 40px; line-height: 38px; padding:0 13px; font-size:14px; border:1px solid #000;
+    -webkit-appearance:none; /* for chrome */
+    -moz-appearance:none; /*for firefox*/
+     appearance:none; background:url('/new/images/common/select_arrow.png') no-repeat 97% 50%/7px auto;}
+.question_area .inp_txt{width: 100%;}
+.question_area .inp_code{width: 30%; margin: 0px 10px;}
+.question_area .inp_content{width: 100%; height: 262px; line-height: 38px; padding:0 13px; font-size:14px; border:1px solid #000;}
+.question_area .safecode{color: #ff0000; font-size: 24px; padding: 0 10px;}
+
+

@@ -1,0 +1,139 @@
+<? include "../include/header.html"; ?>
+<div class="wrap"><!-- wrap -->
+<?
+$PCategory = Replace_Check_XSS2($PCategory);
+if (!$PCategory) $PCategory = $Menu01ParentCategory;
+$Category = Replace_Check_XSS2($Category);
+
+// 메뉴명 구하기
+$Sql = "SELECT * FROM CourseCategory WHERE ParentCategory=0 AND Deep=1 AND idx=$PCategory";
+$Result = mysqli_query($connect, $Sql);
+$RowP = mysqli_fetch_array($Result);
+
+include "../include/subtitle_educps.html";
+
+
+if($Category) {
+	$Sql = "SELECT * FROM CourseCategory WHERE Deep=2 AND ParentCategory=$PCategory AND idx=$Category AND Del='N' ORDER BY OrderByNum ASC, idx ASC";
+}else{
+	$Sql = "SELECT * FROM CourseCategory WHERE Deep=2 AND ParentCategory=$PCategory AND Del='N' ORDER BY OrderByNum ASC, idx ASC LIMIT 0,1";
+}
+// echo $Sql;
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+
+if($Row) {
+	$CategoryName = $Row['CategoryName'];
+	$Category = $Row['idx'];
+}
+?>
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span><?=$RowP[CategoryName]?><span>></span><?=$CategoryName?>
+        </div>
+    </div>
+    
+    <div class="tabList_area">
+        <ul class="tabList">
+        <?
+        $cate_no=0;
+        $SQL = "SELECT * FROM CourseCategory WHERE Deep=2 AND ParentCategory=$PCategory AND Del='N' ORDER BY OrderByNum ASC, idx ASC";
+        $QUERY = mysqli_query($connect, $SQL);
+        if($QUERY && mysqli_num_rows($QUERY))
+        {
+            while($ROW = mysqli_fetch_array($QUERY))
+            {
+            $cate_no++;
+        ?>
+            <li>
+                <a id="" href="/new/educps/course.html?PCategory=<?=$PCategory?>&Category=<?=$ROW['idx']?>" class="tab_btn <?if($ROW['idx']==$Category) {?>on<?}?>"  ><?=$ROW['CategoryName']?></a>
+            </li>
+        <?
+            if ($cate_no % 5==0) echo "</ul><ul class='tabList' style='margin-top:10px;'>";
+            }
+        }
+        ?>
+        </ul>
+    </div>
+    
+    <div class="contents_wrap">
+        <div class="edu_contents_wrap">
+            <?
+            $pg = Replace_Check_XSS2($pg);
+
+
+            ##-- 페이지 조건
+            if(!$pg) $pg = 1;
+            $page_size = 10;
+            $block_size = 10;
+
+            ##-- 검색 조건
+            $where = array();
+
+            $where[] = "Del='N'";
+            $where[] = "UseYN='Y'";
+            $where[] = "PackageYN='N'";
+            $where[] = "Category1=$PCategory";
+
+            if($Category) {
+            $where[] = "Category2=$Category";
+            }
+
+            $where = implode(" AND ",$where);
+            if($where) $where = "WHERE $where";
+
+
+            ##-- 정렬조건
+            if($orderby=="") {
+                $str_orderby = "ORDER BY RegDate DESC, idx DESC";
+            }else{
+                $str_orderby = "ORDER BY $orderby";
+            }
+            ?>
+
+            <?
+            $i = 1;
+            $SQL = "SELECT * FROM Course $where $str_orderby";
+            $QUERY = mysqli_query($connect, $SQL);
+            if($QUERY && mysqli_num_rows($QUERY))
+            {
+                while($ROW = mysqli_fetch_array($QUERY))
+                {
+                    extract($ROW);
+
+                    if($PreviewImage) {
+                        $PreviewImageView = "/upload/Course/".$PreviewImage;
+                    }else{
+                        $PreviewImageView = "/images/no_img.jpg";
+                    }
+
+                    if($IE8Compat=="Y") {
+                        //$PreviewFun = "CoursePreviewPopup";
+                        $PreviewFun = "CoursePreview";
+                    }else{
+                        $PreviewFun = "CoursePreview";
+                    }
+            ?>
+            <ul class="edu_contents" onclick="window.open('course_detail.html?PCategory=<?=$PCategory?>&Category=<?=$Category?>&idx=<?=$idx?>')">
+                <li class="img" style="border:1px #ddd solid; background-image: url(<?=$PreviewImageView?>)"></li>
+                <li class="title_wrap">
+                    <div class="title"><?=$ContentsName?></div>
+                    <div class="stitle">내용전문가 : <?=$Professor?> | <?=$Chapter?>차시<em> / </em><?=$ContentsTime?>시간</div>
+                </li>
+            </ul>
+            <?
+                $i++;
+                }
+                
+                for ($z=($i%4); $z <= 4; $z++) {
+                    echo "<ul class='edu_contents'></ul>";
+                }
+
+            }
+            ?>
+        </div>
+        
+    </div>
+    
+</div><!-- wrap --> 
+<? include "../include/footer.html"; ?>

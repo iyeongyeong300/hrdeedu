@@ -1,0 +1,70 @@
+<? include "../include/member_header_include.html";
+//로그인 여부 체크
+include $_SERVER['DOCUMENT_ROOT']."/include/login_not_check.php";
+?>
+<div class="stitle">아이디 / 비밀번호 찾기</div>
+<div class="line30"></div>
+       
+        <div class="memberinfo_wrap">
+            <div class="Requiredinfo_area pb0">
+                <h2>아이디 찾기</h2>
+                <div class="mt10">회원가입 시 등록하셨던 이름, 휴대폰번호를 입력하시면 등록 된 <span class="font_b400">휴대폰번호로 아이디를 문자로 전송</span>해 드립니다.
+                </div>
+                <ul class="chkarea mt20 tc">
+                    <li class="ml10"><input type="radio" name="MemberType1" id="MemberType1_1" value="A" checked><label for="MemberType1_1">기업근로자 회원</label></li>
+                    <li><input type="radio" name="MemberType1" id="MemberType1_2" value="B"><label for="MemberType1_2">국민내일배움카드</label></li>
+                </ul>
+                <div class="Requiredinfo_row">
+                    <div class="title">이름</div>
+                    <div class="content">
+                        <input type="text" name="Name1" id="Name1" class="inp_txt" title="이름" placeholder="이름을 입력해주세요.">
+                    </div>
+                </div>                
+                <div class="Requiredinfo_row">
+                    <div class="title">휴대폰</div>
+                    <div class="content">
+                        <div class="Sortarea">
+                            <div class="phonebox"><input type="text" name="Mobile01_1" id="Mobile01_1" class="inp_txt" title="휴대폰번호" placeholder=""></div>
+                            <div class="phonebox"><input type="text" name="Mobile01_2" id="Mobile01_2" class="inp_txt" title="휴대폰번호" placeholder=""></div>
+                            <div class="phonebox"><input type="text" name="Mobile01_3" id="Mobile01_3" class="inp_txt" title="휴대폰번호" placeholder=""></div>
+                        </div>
+                    </div>                      
+                </div>
+                <div class="btnarea mt30">
+                    <span class="w100p"><button type="button" class="member_btn01" onclick="ID_Find()">확인</button></span>
+                </div>   
+                <hr>
+                <h2 class="mt20">비밀번호 찾기</h2>
+                <div class="mt10">회원가입 시 등록하셨던 이름, 아이디, 휴대폰번호를 입력하시면 등록 된 휴대폰번호로 임시 비밀번호를 문자로 전송해드립니다.</div>
+                <ul class="chkarea mt20 tc">
+                    <li class="ml10"><input type="radio" name="MemberType2" id="MemberType2_1" value="A" checked><label for="MemberType2_1">기업근로자 회원</label></li>
+                    <li><input type="radio" name="MemberType2" id="MemberType2_2" value="B"><label for="MemberType2_2">국민내일배움카드</label></li>
+                </ul>              
+                <div class="Requiredinfo_row">
+                    <div class="title">이름</div>
+                    <div class="content">
+                        <input type="text" name="Name2" id="Name2" class="inp_txt" title="이름" placeholder="이름을 입력해주세요.">
+                    </div>
+                </div>  
+                <div class="Requiredinfo_row">
+                    <div class="title">아이디</div>
+                    <div class="content">
+                        <input type="text" name="ID" id="ID" class="inp_txt" title="부서" placeholder="아이디를 입력해주세요.">
+                    </div>
+                </div>                                 
+                <div class="Requiredinfo_row">
+                    <div class="title">휴대폰</div>
+                    <div class="content">
+                        <div class="Sortarea">
+                            <div class="phonebox"><input type="text" name="Mobile02_1" id="Mobile02_1" class="inp_txt" title="휴대폰번호" placeholder=""></div>
+                            <div class="phonebox"><input type="text" name="Mobile02_2" id="Mobile02_2" class="inp_txt" title="휴대폰번호" placeholder=""></div>
+                            <div class="phonebox"><input type="text" name="Mobile02_3" id="Mobile02_3" class="inp_txt" title="휴대폰번호" placeholder=""></div>
+                        </div>
+                    </div>                      
+                </div>
+                <div class="btnarea mt30">
+                    <span class="w100p"><button type="button" class="member_btn01" onclick="PWD_Find()">확인</button></span>
+                </div>                
+             </div> 
+        </div>
+<? include "../include/member_footer_include.html"; ?> 

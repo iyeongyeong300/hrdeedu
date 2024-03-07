@@ -1,0 +1,58 @@
+2019-09-18 00:01:05 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:01:29 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:02:22 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:02:55 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:03:39 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:04:21 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:08:13 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:09:05 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:09:51 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:10:31 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:11:15 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:12:35 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:13:02 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:17:28 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:20:36 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] []
+2019-09-18 00:20:36 [FATAL] [] Key for MID [] does not exist in mall.conf
+2019-09-18 00:21:02 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] []
+2019-09-18 00:21:02 [FATAL] [] Key for MID [] does not exist in mall.conf
+2019-09-18 00:21:02 [INFO ] [] Response Code=[XC01], Msg=[LGD_MID 필드가 누락되었습니다. Init_TX(LGD_MID)를 해주시기 바랍니다. 또는 mall.conf 에 상점키가 셋팅되어 있지 않습니다.], Count=1
+2019-09-18 00:22:42 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:23:16 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:23:16 [INFO ] [tekt002-012019091800231650e6e2f3df2c2ac9548bd41d7aee84453a2fe0c9] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:23:33 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:24:04 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:24:04 [INFO ] [tekt002-0120190918002404143a3dffc2f33addba24285de99bceeab3a8ff4b] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:25:24 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:25:47 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:25:48 [INFO ] [tekt002-0120190918002547b3b17d1ce36521b0279f93961b88a084ba04da81] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:25:48 [INFO ] [tekt002-01201909180025484ae9772fa768498793a246735c6dcf2eca19717f] Response Code=[0000], Msg=[롤백 요청 수신 성공], Count=1
+2019-09-18 00:29:36 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:30:04 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:30:04 [INFO ] [tekt002-0120190918003004f5b5d4dfaa41cceb7b35d170fbd50ebd252844e8] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:30:04 [INFO ] [tekt002-01201909180030044b4b57332c80c0b5932442d590e5b89e74ebbed9] Response Code=[0000], Msg=[롤백 요청 수신 성공], Count=1
+2019-09-18 00:30:54 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:31:15 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:31:15 [INFO ] [tekt002-0120190918003115504d1a7aefdad66d5f67272e6a0893d8ce8520db] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:32:16 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:32:17 [INFO ] [tekt002-0120190918003216732d11afaeb50b3af76ab698ddd59d3f33bfed8c] Response Code=[S007], Msg=[요청하신 거래[주문번호:201909180030849]는  2019/09/18 00:31:15 에 이미 신용카드로 결제로 시도한 거래입니다. 상점연락처[070-7545-7653]], Count=1
+2019-09-18 00:35:54 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:36:14 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:36:14 [INFO ] [tekt002-0120190918003614c494975c9639c91efba4f30ce6a30c1f6130ff2c] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:38:05 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:38:28 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:38:28 [INFO ] [tekt002-01201909180038280abe7460169b751b3f887e7763f5a58e68118d9f] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:39:22 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:39:48 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:39:48 [INFO ] [tekt002-01201909180039485bd7cc83653ca964db4a2388a9bd46f608c0e349] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:40:19 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:40:38 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:40:39 [INFO ] [tekt002-01201909180040382721b2a950c4043b7b7ef9d8c38c57f5cb2c44e3] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:41:01 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:41:24 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:41:24 [INFO ] [tekt002-01201909180041249e1152acec2be574cb97ac861c4ac4dbc869433f] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:42:21 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:42:51 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [test]
+2019-09-18 00:42:52 [INFO ] [tekt002-0120190918004251d59a2c441b02bf1284dbfeb0a97f7b010bfccbec] Response Code=[0000], Msg=[결제성공], Count=1
+2019-09-18 00:44:55 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [service]
+2019-09-18 00:45:04 [INFO ] [] XPayClient initialize [/home/LMS/lib/LGU_XPay_Crossplatform_PHP/lgdacom] [service]

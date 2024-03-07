@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+
+/* main */
+#mainVisual { position:relative; top:0; width:100%; margin:0 auto; z-index:1; height:580px;}
+#mainVisual .visual { text-align:center; font-size:0;}
+
+#subVisual { position:relative; top:0; width:100%; margin:0 auto; z-index:1; height:1080px; background:#10100f;}
+#subVisual .visual li { height:680px;}
+
+#logVisual { position:relative; top:0; width:100%; margin:0 auto; z-index:1; height:280px; background:#346edf;}
+#logVisual .visual li { height:280px;}
+
+#subbanner { position:relative; top:0; width:100%; margin:0 auto; z-index:1;  background:#10100f;}
+#subbanner .visual { text-align:center; font-size:0;}
+
+#subText { position:relative; top:0; width:100%; margin:0 auto; z-index:1;  background:#fff; margin-top: 60px; margin-bottom: 60px;}
+#subText .txt  { font-size:32px; color:#333; text-align:center; letter-spacing: -1px; font-weight: 500; line-height: 48px;}
+
+#mainContent { position:relative; top:0; width:100%; margin:50px auto 0 auto; text-align:center; padding-bottom:;}
+
+
+#cont_01	{ position:relative; top:0; width:100%; margin:0px auto 0 auto; z-index:1; text-align:center; padding:0px; }
+#cont_01 .visual li { padding: 80px; height:920px; margin:0px; }
+
+#cont_02_wrap	{ position:relative; top:0;  margin:0px auto 0 auto; z-index:1; padding:0px; text-align:center;}
+#cont_02_wrap .visual { height:1450px; }
+#cont_02_wrap .visual_1 li { height:270px; }
+#cont_02_wrap .visual_2 li { position:relative; top:0; width:100%; text-align:left; margin:0px auto 0 auto; z-index:1; padding:0px; height:560px; }
+#cont_02_wrap .visual_3 li { position:relative; top:0; width:100%; text-align:right; margin:0px auto 0 auto; z-index:1; padding:0px; height:640px; }
+
+
+
+
+#cont_03	{ position:relative; top:0; width:100%; margin:0px auto 0 auto; z-index:1; text-align:center; padding:0px; }
+#cont_03 .visual li { padding: 80px; height:800px;}
+
+#cont_04	{ position:relative; top:0; width:100%; margin:0px auto 0 auto; z-index:1; text-align:center; padding:0px; }
+#cont_04 .visual li { padding: 80px; height:830px;} 
+
+
+#mainContent .Course { position:relative; background:#fff; width:1200px; margin:0 auto;}
+#mainContent .Course .page { font-size:0; line-height:normal;}
+#mainContent .Course .page span { margin:0 2px;}
+#mainContent .Course .list { width:100%; margin:0 auto; font-size:0; text-align:left;}
+#mainContent .Course .list li { width:276px; margin:20px 32px 12px 0; vertical-align:top; display:inline-block;}
+#mainContent .Course .list li:nth-child(4n) { margin-right:0;}
+#mainContent .Course .list a { text-decoration:none; display:inline-block;}
+#mainContent .Course .list a:hover { color:#0f97af;}
+#mainContent .Course .cate { background:#d6d6d6; padding:8px 0; color:#444; font-size:15px; font-weight:700; text-align:center;}
+#mainContent .Course .headimg { border:solid 1px #d6d6d6; border-top:none;}
+#mainContent .Course .headimg img {width:274px; height:154px;}
+#mainContent .Course .title { margin-top:12px; font-size:20px; font-weight:800; line-height:25px; text-align:left; letter-spacing:-0.02em;}
+#mainContent .Course .modeMark { margin-top:7px; text-align:left;}
+
+#mainContent .CsNew { position:relative; background:#fff; width:1200px; margin:40px auto 0 auto; text-align:left; display:table;}
+#mainContent .CsNew a { text-decoration:none;}
+#mainContent .CsNew .csPhone { position:relative; border:solid 1px #d6d6d6; width:435px; padding:27px 30px 29px 30px; letter-spacing:-0.02em; vertical-align:top; display:table-cell;}
+#mainContent .CsNew .csPhone .title { border-bottom:solid 1px #d6d6d6; padding-bottom:18px; color:#333; font-size:22px; font-weight:800;}
+#mainContent .CsNew .csPhone ul { margin-top:17px;}
+#mainContent .CsNew .csPhone li { position:relative; margin-top:15px; padding-left:90px;}
+#mainContent .CsNew .csPhone .item { position:absolute; top:3px; left:0; background:#aaaaaa; padding:3px 10px; color:#fff; font-size:16px; display:inline-block; -webkit-border-radius:20px; -moz-border-radius:20px; border-radius:20px;}
+#mainContent .CsNew .csPhone .number { color:#0f6caf; font-size:26px; font-weight:800; letter-spacing:-0.04em;}
+#mainContent .CsNew .csPhone .time { background:url(../images/main/cs_icon.png) no-repeat left top; min-height:43px; margin:5px 0 0 0; padding-left:55px; font-size:14px; color:#333; text-align:left;}
+#mainContent .CsNew .csPhone .time p { padding-top:3px;}
+#mainContent .CsNew .csPhone .time span { width:85px; color:#666; display:inline-block;}
+#mainContent .CsNew .csPhone .time li:last-child { color:#666;}
+#mainContent .CsNew .newInfo { position:relative; width:725px; padding-left:40px; vertical-align:top; display:table-cell;}
+#mainContent .CsNew .newInfo .tabMenu { border:solid 1px #d6d6d6; border-bottom:none;}
+#mainContent .CsNew .newInfo .tabMenu ul { background:url(../images/main/newinfo_line.png) repeat-x bottom; width:100%; font-size:0;}
+#mainContent .CsNew .newInfo .tabMenu ul li { border-right:solid 1px #e2e2e2; width:170px; display:inline-block;}
+#mainContent .CsNew .newInfo .tabMenu ul li a { background:#f3f3f3; border-bottom:solid 1px #e2e2e2; width:100%; padding:17px 0; font-size:17px; color:#777; font-weight:bold; text-align:center; display:inline-block;}
+#mainContent .CsNew .newInfo .tabMenu ul li a:hover { background:#fff; color:#111;}
+#mainContent .CsNew .newInfo .tabMenu ul li a.show { background:#fff; border-bottom:solid 1px #fff; color:#111;}
+#mainContent .CsNew .newInfo .tabMenu ul .more { position:absolute; top:0; right:0;}
+#mainContent .CsNew .newInfo .tabMenu ul .more a { background:url(../images/main/btn_more.png) no-repeat center; width:54px; height:54px; font-size:0; display:inline-block;}
+#mainContent .CsNew .newInfo .list { border-left:solid 1px #d6d6d6; border-right:solid 1px #d6d6d6; height:220px; padding:15px 30px 20px 30px; font-size:16px; color:#777;}
+#mainContent .CsNew .newInfo .list li { position:relative;}
+#mainContent .CsNew .newInfo .list li .date { position:absolute; top:6px; right:0;}
+#mainContent .CsNew .newInfo .list li a { width:560px; padding:6px 0; color:#555; font-size:16px; display:inline-block;}
+#mainContent .CsNew .newInfo .list li a:hover { color:#0f6caf;}
+#mainContent .CsNew .newInfo .list li.notice a { color:#0f6caf;}
+
+#mainContent .ConLink { position:relative; background:#e1eaef; margin-top:50px; padding:50px 0; font-size:14px; line-height:140%;}
+#mainContent .ConLink .area { position:relative; width:1200px; margin:0 auto; display:table;}
+#mainContent .ConLink .area a { width:90%; text-decoration:none; display:inline-block;}
+#mainContent .ConLink .area li { border-right:solid 1px #fff; width:400px; padding-top:5px; vertical-align:middle; display:table-cell;}
+#mainContent .ConLink .area li:last-child { border-right:none;}
+#mainContent .ConLink .area .bank { background:none;}
+#mainContent .ConLink .area .bank .title { background:#0f97af; padding:3px 10px; color:#fff; font-size:16px; display:inline-block; -webkit-border-radius:20px; -moz-border-radius:20px; border-radius:20px;}
+#mainContent .ConLink .area .bank .info { margin-top:15px; color:#222; font-size:20px; font-weight:800; line-height:30px;}
+#mainContent .ConLink .area .bank .info em { color:#0f6caf; font-size:24px; font-style:normal;}
+#mainContent .ConLink .area .bank .txt { margin:11px 0 0 70px; color:#777; text-align:left;}
+#mainContent .ConLink .area .item { color:#222; color:#777; font-size:14px;}
+#mainContent .ConLink .area .item strong { color:#222; font-size:20px; padding:20px 0 10px 0; display:inline-block;}
+
+
+
+
+#bottomBanner
+elment.style {
+    display: block;
+}
+.btoom-bn-wrap {
+    display: none;
+	font-size: 22px;
+	font-weight:bold;
+	text-align:center;
+	padding: 20px 0;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #356ee1;
+    background: #fff;
+    z-index: 9999;
+}
+
+.btoom-bn-wrap { background: #fff; background: rgba(255, 255, 255, 0.7); }
+
+
+.btoom-bn-wrap .bn-wrap .btn {
+    padding: 0;
+    display: inline-block;
+    width: 98px;
+    height: 34px;
+    line-height: 30px;
+    background: #356ee1;
+	font-size: 22px;
+	font-weight:bold;
+    color: #fff;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    letter-spacing: 0;
+}
+
+.btn a {text-decoration:none; color:#fff;}
+
+.btoom-bn-wrap .bn-wrap .btn-close {
+    position: absolute;
+	font: 18px; 
+	text-decoration:"none";
+    top: 0px;
+    cursor: pointer;
+}

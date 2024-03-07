@@ -1,0 +1,109 @@
+<? include "../include/header.html"; ?>
+<?
+include "../include/login_check.php";
+?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_mypage.html"; ?>
+
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>나의학습실<span>></span>수강/결제관리<span>></span>수강신청 내역
+        </div>
+    </div>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="../mypage/lecture.html" class="tab_btn">수강관리</a>
+            </li>
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn on">수강신청/결제관리</a>
+            </li>
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn">자료/상담관리</a>
+            </li>
+            <?if($LoginEduManager=="Y") {?>
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn">교육담당자</a>
+            </li>         
+            <? } ?>
+            <li>
+                <a href="../mypage/memberinfo.html" class="tab_btn">회원정보관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn on">수강신청 내역</a>
+            </li>
+        </ul>
+    </div>
+    <ul class="myApplication">
+        <li class="lst">
+            <?
+            $SQL = "SELECT a.*, b.PreviewImage, b.ContentsName, b.idx AS Course_idx, c.CategoryName AS Category1Name, c.idx AS Category1_idx, d.CategoryName AS Category2Name, 
+                        d.idx AS Category2_idx, b.Professor 
+                        FROM 
+                        LectureRequest AS a 
+                        LEFT OUTER JOIN Course AS b ON a.LectureCode=b.LectureCode 
+                        LEFT OUTER JOIN CourseCategory AS c ON b.Category1=c.idx 
+                        LEFT OUTER JOIN CourseCategory AS d ON b.Category2=d.idx 
+                        WHERE a.ID='$LoginMemberID' ORDER BY a.RegDate DESC";
+            //echo $SQL;
+            $QUERY = mysqli_query($connect, $SQL);
+            if($QUERY && mysqli_num_rows($QUERY))
+            {
+                while($ROW = mysqli_fetch_array($QUERY))
+                {
+                    extract($ROW);
+
+
+                    if($Category2Name) {
+                        $Category2Name = " &gt; ".$Category2Name;
+                    }
+
+                    $timestamp = strtotime($LectureStart."+1 months");
+                    $RequestCancelDate = date("Y-m-d 23:59:59", $timestamp);
+
+                    if(date("Y-m-d H:i:s") < $RequestCancelDate) {
+                        $RequestCancelDateYN = "Y";
+                    }else{
+                        $RequestCancelDateYN = "N";
+                    }
+
+                    $LectureUrl = "/new/educps/course_detail.html?PCategory=$Category1_idx&Category=$Category2_idx&idx=$Course_idx";
+            ?>
+            <ul>
+                <li class="titlearea">
+                    <ul>
+                       <li class="navi"><?=$Category1Name?> <?=$Category2Name?></li>
+                       <li class="name"><?=$ContentsName?></li>
+                       <li class="date">수강 신청일 : <span><?=substr($RegDate,0,10)?></span><span class="pl10 pr10">I</span>신청 학습기간 : <span><?=$LectureStart?> ~ <?=$LectureEnd?></span></li>
+                       <li class="expert">내용전문가 : <?=$Professor?></li>
+                    </ul>
+                </li>
+                <li class="btnarea">
+                    <ul>
+                       <?if($Status=="A") {?><li><button type="button" class="btn_02" onclick="Javascript:LectureRequestCancel('<?=$idx?>');">수강신청 취소</button></li><?}?>
+                       <li><button type="button" class="btn_02" onclick="window.open('<?=$LectureUrl?>')">강의회원정보관리보 보기</button></li>
+                    </ul>
+                </li>
+            </ul>
+            <?
+                }
+            }else{
+            ?>
+            <ul>
+              <li style="width:100%; text-align:center;padding:50px"><strong>수강 신청내역이 없습니다.</strong></li>
+            </ul>
+            <?}?>
+
+        </li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

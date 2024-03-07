@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/* common */
+#wrap {position:relative; width:100%;}
+
+	/* layout */
+	#header { position:relative; z-index:100; background:#fff; width:100%; margin:0 auto; height:58px;}
+
+		#logoArea { position:relative; top:10px; font-size:0; line-height:normal;}
+		#logoArea img { width:143px; height:38px;}
+		#logoArea:after{ content:""; display:block; clear:both;}
+		
+		#sidemenu { position:absolute; z-index:11; top:0; right:0; font-size:0; line-height:normal;}
+		#sidemenu span { border-left:solid 1px #e2e2e2; display:inline-block;}
+		#sidemenu span:last-child { border-left:none;}
+		#sidemenu img { width:61px; height:58px;}
+		#sidemenu:after{ content:""; display:block; clear:both;}
+		
+	#Footer { position:relative; width:100%; margin:0 auto; padding-bottom:10px; font-size:12px; color:#888; line-height:normal; font-weight:400;}
+	#Footer .phone { position:relative; background:#333; height:33px; color:#fff; font-size:16px; line-height:31px;}
+	#Footer .phone a { color:#fff; text-decoration:none; display:inline-block;}
+	#Footer .phone strong { margin-left:10px;}
+	#Footer .phone .btnTop { position:absolute; top:0; right:0; margin:0 auto; font-size:0; line-height:normal;}
+	#Footer .phone .btnTop img { width:33px; height:33px;}
+	#Footer .btnSide { margin-top:15px; line-height:normal; font-size:0;}
+	#Footer .btnSide span { margin:0 2px; vertical-align:top;}
+	#Footer .btnSide a { background:#fff; border:solid 1px #d5d5d5; padding:3px 10px; font-size:12px; color:#333; text-decoration:none; display:inline-block; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+	#Footer .btnSide a:hover { background:#d5d5d5;}
+	#Footer .copyArea { position:relative; margin:8px auto 0 auto; font-size:11px; line-height:1.5em;}
+	#Footer .copyArea .address {}
+	#Footer .copyArea .address .gap { margin-left:15px;}
+	#Footer:after{ content:""; display:block; clear:both;}
+	
+	
+	.sitemenuArea { position:absolute; z-index:1000; top:58px; width:100%; margin:0 auto; background:#346edf; text-align:left; padding-bottom:30px;}
+	.sitemenuArea a { text-decoration:none; display:inline-block;}
+	.sitemenuArea .logMy { border-bottom:solid 1px #fff; text-align:center; padding:30px 0; font-size:0; line-height:normal;}
+	.sitemenuArea .logMy span { margin:0 3px;}
+	.sitemenuArea .logMy a { border:solid 1px #fff; width:140px; color:#fff; font-size:20px; line-height:46px; text-align:center;}
+	.sitemenuArea .logMy a:hover { background:#fff; color:#346edf;}
+	.sitemenuArea li { border-bottom:solid 1px #fff; text-align:left; padding:0;}
+	.sitemenuArea li a { width:100%; padding:20px 0; font-size:20px; color:#fff; }
+	.sitemenuArea li a:hover { background:#4e4e4e;}
+	.sitemenuArea .margin { padding:0 25px;}
+

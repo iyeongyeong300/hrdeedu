@@ -1,0 +1,436 @@
+<?php include "../include/header.html"; ?>
+
+    <!-- 메인배너 -->
+    <style>
+        .mainbanner {}
+        .swiper {width: 100%;}
+        .swiper-slide {text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center;}
+        .mainbanner_01 {width:100%; height:500px; background-repeat: no-repeat; background-position: 50% 50%; background-color:#000; background-image: url(../images/main/main_banner01.png);}
+        .mainbanner_02 {width:100%; height:500px; background-repeat: no-repeat; background-position: 50% 50%; background-color:#211912; background-image: url(../images/main/main_banner02.png);}
+        .mainbanner_03 {width:100%; height:500px; background-repeat: no-repeat; background-position: 50% 50%; background-color:#27363F; background-image: url(../images/main/main_banner03.png);}
+        .mainbanner_04 {width:100%; height:500px; background-repeat: no-repeat; background-position: 50% 50%; background-color:#004258; background-image: url(../images/main/main_banner04.png);}
+        @media (max-width: 1000px) {
+            .mainbanner_01 {width:100%; background-repeat: no-repeat; background-position: 50% 50%; background-color:#000; background-image: url(../images/main/main_banner01_1000.png);}
+            .mainbanner_02 {width:100%; background-repeat: no-repeat; background-position: 50% 50%; background-color:#211912; background-image: url(../images/main/main_banner02_1000.png);}
+            .mainbanner_03 {width:100%; background-repeat: no-repeat; background-position: 50% 50%; background-color:#27363F; background-image: url(../images/main/main_banner03_1000.png);}
+            .mainbanner_04 {width:100%; background-repeat: no-repeat; background-position: 50% 50%; background-color:#004258; background-image: url(../images/main/main_banner04_1000.png);}
+        }
+        .swiper-button-next {right: 50px; color:#fff;}
+        .swiper-button-prev {left: 50px; width:20px; color:#fff;}
+        .swiper-button-next:after, .swiper-button-prev:after {font-size: 80px; opacity: 0.3;}
+        @media (max-width: 1000px) {
+            .swiper {width: 100%;}
+            .swiper-button-next {display: none;}
+            .swiper-button-prev {display: none;}
+            .swiper-button-next:after, .swiper-button-prev:after {display: none;}
+            .swiper-pagination {display: none;}
+
+            .main_faq_contents a {float:left; width:48%;}
+            .main_faq_contents .box {width:100%;}
+            .main_faq_tab div {margin-left: 5px; margin-top: 10px;}
+        }
+    </style>
+    <div class="mainbanner">
+        <div class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="mainbanner_01"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="mainbanner_02"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="mainbanner_03"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="mainbanner_04"></div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!-- 메인배너 -->
+
+    <!-- wrap -->
+    <div class="wrap">
+
+        <!-- main faq -->
+        <?
+            $FaqCateArr = Array("ALL"=>"전체", "A"=>"회원정보", "B"=>"학습", "C"=>"평가", "D"=>"과제", "E"=>"회원탈퇴", "F"=>"기타"); 
+        ?>
+        <div class="main_faq">
+            <div class="main_faq_top">
+                <div class="main_faq_title">
+                    <span>자주하는</span> 질문
+                </div>
+                <div class="main_faq_tab">
+                <?
+                foreach ($FaqCateArr as $key=>$val) { 
+                    if ($key=="ALL") $class = "on"; else $class = ""; 
+                    echo "<div class='$class' data-id='$key'>$val</div>";
+                }
+               ?> 
+                </div>
+            </div>
+        </div>
+        <?
+        foreach ($FaqCateArr as $FaqCate=>$FaqCateName) { 
+        ?>
+        <div class="main_faq_contents Cate <?=$FaqCate?>">
+            <?
+            $i = 0;
+            if ($FaqCate!="ALL") $CateSQL = " AND Category='$FaqCate' "; else $CateSQL = "";
+            $SQL = "SELECT * FROM Faq WHERE Del='N' AND UseYN='Y' {$CateSQL} ORDER BY OrderByNum ASC, RegDate ASC LIMIT 10";
+            $QUERY = mysqli_query($connect, $SQL);
+            if($QUERY && mysqli_num_rows($QUERY))
+            {
+                while($ROW = mysqli_fetch_array($QUERY))
+                {
+                    extract($ROW);
+                    $Title = strcut_utf8($Title,45);
+                    $FaqCateStr = $FaqCateArr[$Category];
+            ?>
+            <a href="/new/support/faq.html?MainSend=Y&view_num=<?=$i?>">
+            <div class="box">
+                 <ul class="title">
+                    <li class="title_q">Q</li>
+                    <li class="title_t"><span class="ellip2"><?=$Title?></span></li>
+                </ul>
+                <div class="tag"><span>#<?=$FaqCateStr?></span></div>
+            </div>
+            </a>
+            <?
+            $i++;
+                }
+            }
+            ?>
+        </div>
+        <?
+        }
+        ?>
+        <script>
+        $(function(){
+            $('.main_faq_tab div').click(function() {
+                var id = $(this).data("id");
+                $(".main_faq_tab div").removeClass("on");
+                $(this).addClass("on");
+
+                $(".main_faq_contents.Cate").css("display","none");
+                $(".main_faq_contents.Cate."+id).css("display","flex");
+            });
+
+            $(".main_faq_contents.Cate.ALL").css("display","flex");
+        });
+        </script>
+        <!-- main faq -->
+
+        <div class="main_center">
+            
+            <div class="chatbotbn "><img class="_chatbotBtns" src="../images/main/chatbot_bn.png"></div>
+			
+            <div onclick="window.open('https://www.939.co.kr/hrdeedu/')" class="remotesevbn"><img src="../images/main/remotesev_bn.png"></div>
+        </div>
+        <div class="main_center">
+            <div class="notice">
+               <table width="100%" class="notice_tbl" border="0" cellspacing="0" summary="공지사항"> 
+                    <colgroup>
+                        <col width=""><col width="30%">
+                    </colgroup>
+                    <tbody>
+                       <tr onclick="">
+                           <th class="al">공지사항</th>
+                           <td class="ar"><a href="/new/support/notice.html">더보기+</a></td>
+                       </tr>
+                        <?
+                        $i = 0;
+                        $SQL = "SELECT * FROM Notice WHERE Del='N' AND UseYN='Y' ORDER BY Notice='Y' desc,RegDate DESC, idx DESC LIMIT 4";
+                        $QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY))
+                        {
+                            while($ROW = mysqli_fetch_array($QUERY))
+                            {
+                                extract($ROW);
+
+                                $Title = strcut_utf8($Title,45);
+                        ?>
+                       <tr>
+                           <td><a href="/new/support/notice_view.html?idx=<?=$idx?>"><?=$Title?></a></td>
+                           <td class="ar"><?=substr($RegDate,0,10)?></td>
+                       </tr>
+                        <?
+                        $i++;
+                            }
+                        }
+                        ?>
+                   </tbody>
+                </table>
+               
+            </div>
+            <div class="supporbn"><img src="../images/main/suppor_bn.png"></div>
+        </div>		
+
+        <div class="main_center_title">
+            <div class="title">법정교육</div>
+            <div class="stitle"><span>1인 이상 사업장</span>은 관련 법률이 정한 <span>법정교육을 반드시 이수</span>해야 합니다.</div>
+        </div>
+
+        <!-- 법정교육 슬라이드배너 -->
+        <!-- Swiper -->
+        <style>
+            .swiper {width: 100%;}
+            .swiper-slide {text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center;}
+            .contents_01 {}
+            .contents_01 .img img {width:440px; height:280px;}
+            .contents_01 .title {margin-top:25px; font-size:30px; line-height:30px; font-weight:300;}
+            .contents_01 .stitle {margin-top:20px; font-size:18px; line-height:18px; font-weight:300;}
+            .circle_btn {position:absolute; right:20px; top:-78px;}
+            .circleprev {display :inline-block; width:40px; height:40px; background:url(../images/common/circleprev.svg) no-repeat; font-size:0; cursor:pointer;}
+            .circlenext {display :inline-block; width:40px; height:40px; background:url(../images/common/circlenext.svg) no-repeat; font-size:0; cursor:pointer;}
+        </style>
+        <div class="mt40 pos_r">
+            <div class="circle_btn">
+                <div class="circleprev">이전</div>
+                <div class="circlenext ml10">다음</div>
+            </div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_01_01.png"></li>
+                            <li class="title">개인정보보호 교육</li>
+                            <li class="stitle">연 1회, 1시간 이상</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_01_02.png"></li>
+                            <li class="title">직장 내 성희롱 예방교육</li>
+                            <li class="stitle">연 1회, 1시간 이상</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_01_03.png"></li>
+                            <li class="title">직장 내 괴롭힘 예방교육</li>
+                            <li class="stitle">연 1회, 1시간 이상</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_01_04.png"></li>
+                            <li class="title">직장 내 장애인 인식 개선교육</li>
+                            <li class="stitle">연 1회, 1시간 이상</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_01_05.png"></li>
+                            <li class="title">퇴직연금 교육</li>
+                            <li class="stitle">연 1회 이상</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>-->
+            </div>
+        </div>
+        <!-- 법정교육 슬라이드배너 -->
+
+        <div class="main_center_title">
+            <div class="title">근로자 안전보건교육</div>
+            <div class="stitle">산업안전보건법에 의해 <span>5인 이상 사업장</span> 근로자는 <span>안전보건교육을 이수</span>해야 합니다.</div>
+        </div>
+
+        <!-- 근로자 안전보건교육 슬라이드배너 -->
+        <!-- Swiper -->
+        <style>
+            .swiper {width: 100%;}
+            .swiper-slide {text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center;}
+            .contents_01 {}
+            .contents_01 .img img {width:440px; height:280px; border-radius: 13px;}
+            .contents_01 .title {margin-top:25px; font-size:30px; line-height:30px; font-weight:300;}
+            .contents_01 .stitle {margin-top:20px; font-size:18px; line-height:18px; font-weight:300;}
+            .circle_btn {position:absolute; right:20px; top:-78px;}
+            .circleprev2 {display :inline-block; width:40px; height:40px; background:url(../images/common/circleprev.svg) no-repeat; font-size:0; cursor:pointer;}
+            .circlenext2 {display :inline-block; width:40px; height:40px; background:url(../images/common/circlenext.svg) no-repeat; font-size:0; cursor:pointer;}
+        </style>
+        <div class="mt40 pos_r">
+            <div class="circle_btn">
+                <div class="circleprev2">이전</div>
+                <div class="circlenext2 ml10">다음</div>
+            </div>
+            <div class="swiper mySwiper3">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_02_01.png"></li>
+                            <li class="title">제조분야</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_02_02.png"></li>
+                            <li class="title">건설분야</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_02_03.png"></li>
+                            <li class="title">보건분야</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_02_04.png"></li>
+                            <li class="title">유통분야</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_02_05.png"></li>
+                            <li class="title">서비스분야</li>
+                        </ul>
+                    </div>
+                    <div class="swiper-slide">
+                        <ul class="contents_01">
+                            <li class="img"><img src="../images/main/contents_02_06.png"></li>
+                            <li class="title">기타사업분야</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination2"></div>-->
+            </div>
+        </div>
+        <!-- 근로자 안전보건교육 슬라이드배너 -->		
+
+        <!-- 인증서 -->
+        <div class="main_center_title">
+            <div class="title">고용노동부 인증 원격 훈련기관</div>
+            <div class="stitle"><span>법정 · 안전보건교육</span>은 믿을 수 있는 <span><?=$SiteName?></span>과 함께 하십시오.</div>
+        </div>
+        <div class="main_certi_wrap">
+            <div class="main_certi">
+                <img src="../images/main/main_aclass.png">
+            </div>
+        </div>
+        <!-- 인증서 -->
+        
+        <!-- 푸터배너 -->
+        <ul class="main_footer_banner">
+            <li onclick="location.href='../etc/edurefund.html'"><img src="../images/main/footer_banner_01.png"></li>
+            <li onclick="location.href='../etc/eduvoucher.html'"><img src="../images/main/footer_banner_02.png"></li>
+            <li onclick="location.href='../etc/educard.html'"><img src="../images/main/footer_banner_03.png"></li>
+        </ul>
+        <!-- 푸터배너 -->
+        
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        speed: 1000,
+        //slidesPerView 2개 이하일 경우에만 작동 loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".circlenext",
+            prevEl: ".circleprev",
+        },
+        slidesPerView: 3,
+        spaceBetween: 30,
+        breakpoints: {
+            1400: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            930: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
+    });
+
+    var swiper = new Swiper(".mySwiper3", {
+        speed: 1000,
+        //slidesPerView 2개 이하일 경우에만 작동 loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".circlenext2",
+            prevEl: ".circleprev2",
+        },
+
+        slidesPerView: 3,
+        spaceBetween: 30,
+        breakpoints: {
+            1400: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            930: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
+
+    });
+
+    var swiper = new Swiper(".mySwiper2", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        speed: 1000,
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+    });
+</script>
+
+
+    </div>
+    <!-- wrap -->
+<? include $_SERVER['DOCUMENT_ROOT'] . "/popup/include_popup.php"; ?>
+<?php include "../include/footer.html"; ?>

@@ -1,0 +1,88 @@
+<!--
+    2020.02.26. botbinoo,
+    skin : 아웃트로
+    update : 2020.06.04 v2.0
+    copyright all by HRD-assets.
+-->
+<!DOCTYPE html>
+    <head>
+        <!-- script load : require minified IE 11.0 -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11">
+        <meta name="viewport" content="width=1200, user-scalable=no">
+        <script src="./src/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="./src/jquery-ui.min.css">
+        <script src="./src/jquery-1.12.4.js"></script>
+        <script src="./src/jquery-ui.min.js"></script>
+        <script src="./src/contents-core.js"></script>
+        <link rel="stylesheet" href="./src/player.css">
+        <link rel="stylesheet" type="text/css" href="./src/index.css">
+    </head>
+    <body>
+        <div id="_viewPort">
+            <div style="height: 675px;" id="body" class="_bgStage">
+                <!-- inner -->
+                <div>
+                    <div id="_skipBtn"></div>
+                    <div id="_AtLastBalloon"></div>
+                </div>
+                <div>
+                    <video id="video1" width="100%" height="100%">
+                        <source id="vSource" src="#" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div id="_nextBalloon"></div>
+                <div id="_lastBalloon"></div>
+                <!-- End inner -->
+            </div>
+            <div class="_player">
+                <!-- player layer -->
+                <img src="./src/img/bg_player.png" style="
+                        background-size: 100% 100%;
+                        width: 1200px;
+                        height: 70px;
+                    ">
+                <div class="_helpPupBtn"></div>
+                <div class="_contentsRtBtn"></div>
+                <div class="_contentsPlayAndStopBtn">
+                    <img src="./src/img/btnPause.png">
+                </div>
+                <div class="_seekBar">
+                    <div class="graph"></div>
+                    <div class="mask"></div>
+                </div>
+    
+                <div class="time1">
+                    <div class="playerText">00:00</div>
+                </div>
+                <div class="time2">
+                    <div class="playerText">00:00</div>
+                </div>
+                <div class="_prevBtn"></div>
+                <div class="_nextBtn"></div>
+                <div class="_presPageNo"><div>1</div></div>
+                <div class="_totPageNo"><div>11</div></div>
+    
+                <div class="_soundBtn"></div>
+                <div class="_fullScreenBtn"></div>
+                <div class="_menuBarBtn"></div>
+                
+                <div>
+                    <div class="sound-slider-bg"></div>
+                    <input type="hidden" id="amount" readonly>
+                    <div id="slider-vertical" style="display: none;"></div>
+                </div>
+            </div>
+            <div class="_helpPup"></div>
+            <div class="_menuBarPup"></div>
+            <div class="_thnkPup"></div>
+            <div id="_beforeNextPup"></div>
+            
+            <script src="./contents-info.js"></script>
+            <script src="./main.js"></script>
+            <script src="./src/index.js"></script>
+            <script src="./src/player.js"></script>
+        </div>
+    </body>
+</html>

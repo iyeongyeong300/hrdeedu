@@ -1,0 +1,192 @@
+<?
+$list_page = "discussion.html";
+$read_page = "discussion_view.html";
+?>
+<? include "../include/header.html"; ?>
+<?
+include "../include/login_check.php";
+?>
+<div class="wrap"><!-- wrap -->
+<? include "../include/subtitle_mypage.html"; ?>
+   
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>나의학습실<span>></span>자료/상담관리<span>></span>토론방
+        </div>
+    </div>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="../mypage/lecture.html" class="tab_btn">수강관리</a>
+            </li>
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn">수강신청/결제관리</a>
+            </li>
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn on">자료/상담관리</a>
+            </li>
+            <?if($LoginEduManager=="Y") {?>
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn">교육담당자</a>
+            </li>         
+            <? } ?>
+            <li>
+                <a href="../mypage/memberinfo.html" class="tab_btn">회원정보관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn">찜한 학습자료</a>
+            </li>
+			<li>
+                <a href="../mypage/discussion.html" class="tab_btn on">토론방</a>
+            </li>
+            <li>
+                <a href="../mypage/advicelst.html" class="tab_btn ">1:1 상담 리스트</a>
+            </li>
+            <li>
+                <a href="../mypage/studylst.html" class="tab_btn">학습 상담 리스트</a>
+            </li>
+        </ul>
+    </div>
+
+    <?
+    $pg = Replace_Check_XSS2($pg);
+    $col = Replace_Check_XSS2($col);
+    $sw = Replace_Check_XSS2($sw);
+
+
+    ##-- 페이지 조건
+    if(!$pg) $pg = 1;
+    $page_size = 25;
+    $block_size = 10;
+
+    ##-- 검색 조건
+    $where = array();
+
+    if($sw){
+        $where[] = "(UserAnswer LIKE '%$sw%' OR Topic LIKE '%$sw%')";
+    }
+
+    $where[] = "ID='$LoginMemberID'";
+   // $where[] = "Del='N'";
+
+    $where = implode(" AND ",$where);
+    if($where) $where = "WHERE $where";
+
+
+    ##-- 정렬조건
+    if($orderby=="") {
+        $str_orderby = "ORDER BY RegDate DESC, idx DESC";
+    }else{
+        $str_orderby = "ORDER BY $orderby";
+    }
+
+    ##-- 검색 등록수
+    $Sql = "SELECT COUNT(*) FROM DiscussionAnswer $where";
+    $Result = mysqli_query($connect, $Sql);
+    $Row = mysqli_fetch_array($Result);
+    $TOT_NO = $Row[0];
+
+ 
+    ##-- 페이지 클래스 생성
+    include_once("../include/include_page.php");
+
+    $PAGE_CLASS = new Page($pg,$TOT_NO,$page_size,$block_size); ##-- 페이지 클래스
+    $BLOCK_LIST = $PAGE_CLASS->blockList(); ##-- 페이지 이동관련
+    $PAGE_UNCOUNT = $PAGE_CLASS->page_uncount; ##-- 게시물 번호 한개씩 감소
+    ?>    
+    <form name="BoardSearchForm" action="<?=$_SERVER['PHP_SELF']?>" method="GET">
+    <div class="table_box mt30">
+        <div class="table_box_form ac">
+            <span class="search_btn" onclick="Javascript:BoardSearch();"></span><input name="sw" id="sw" class="inp_01" type="text" title="검색어 입력">
+        </div>
+    </div>
+    </form>
+    <table class="tbl_typeA mt40" border="0" cellspacing="0">
+        <colgroup>
+            <col width="10%">
+            <col width="15%">
+            <col>
+            <col width="15%">
+            <col width="10%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">과정</th>
+                <th scope="col">토픽</th>
+                <th scope="col">등록일</th>
+                <th scope="col">답변</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?
+            $SQL = "SELECT co.ContentsName, t.Topic,da.* FROM DiscussionAnswer AS da
+					INNER JOIN Chapter AS ca ON da.Chapter_Seq = ca.Seq 
+					INNER JOIN DiscussionTopic AS t ON ca.Sub_idx = t.idx 
+					INNER JOIN Course AS co ON da.LectureCode = co.LectureCode 
+					$where $str_orderby LIMIT $PAGE_CLASS->page_start, $page_size";
+					
+					 
+            $QUERY = mysqli_query($connect, $SQL);
+            if($QUERY && mysqli_num_rows($QUERY))
+            {
+                while($ROW = mysqli_fetch_array($QUERY))
+                {
+                    extract($ROW);
+            ?>
+            <tr>
+                <td><?=$PAGE_UNCOUNT--?></td>
+                <td><?=$ContentsName?></td>
+                <td class="al">
+                   <a href="Javascript:readRun('<?=$idx?>');"><?=$Topic?></a>
+                </td>
+                <td><?=substr($RegDate,0,10)?></td>
+                <td>
+                    <?if(strlen($TutorRemark) > 0 ) {?>
+						<span class="font_red">답변완료</span>
+					<?}else{?>
+						<span class="font_blue">대기중</span><?}?>
+                </td>
+            </tr>
+          <?
+                }
+            }else{
+            ?>
+            <tr>
+              <td colspan="5">토론내역이 없습니다.</td>
+            </tr>
+            <? } ?>
+        </tbody>
+    </table>
+
+    <?=$BLOCK_LIST?> 
+ 
+</div><!-- wrap --> 
+<? include "../include/footer.html"; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

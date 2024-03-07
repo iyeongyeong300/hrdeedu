@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/total.css" type="text/css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="../js/ie6.js"></script>
+<![endif]-->
+</head>
+   
+<body>
+<!--레이어팝업 사이즈 664*885-->
+    <div class="poplayer_area">
+        <div class="title">간편문의<button class="close"></button></div>
+        <div class="content">
+            <div class="questionpop_area">
+                <dl>
+                    <dt class="dis_f">이름</dt>
+                    <dd><input  title="이름" placeholder="이름을 입력해주세요."></dd>
+                </dl>
+                <dl>
+                    <dt class="dis_f">전화번호</dt>
+                    <dd><input class="inp_txt2" title="전화번호" placeholder=""><span class="pl10 pr10">-</span><input class="inp_txt2" title="전화번호" placeholder=""><span class="pl10 pr10">-</span><input class="inp_txt2" title="전화번호" placeholder=""></dd>
+                </dl>              
+                <dl>
+                    <dt class="dis_f">이메일</dt>
+                    <dd><input title="이메일" placeholder="이메일 주소를 입력해주세요."></dd>
+                </dl>
+                <dl>
+                    <dt class="pt30">문의내용</dt>
+                    <dd><textarea class="inp_content" id="" name="" type="text" value="" title="문의내용" placeholder="문의내용을 입력해주세요."></textarea></dd>
+                </dl>     
+                <dl class="p20">
+                    <dt class="assent dis_b">
+                       <input type="checkbox" name="" id=""><span class="ml5">개인정보수집방침에 동의합니다.</span>
+                       <button type="button" class="btn_02 ml10 title1">내용보기</button> 
+                        <script>
+                            $('.title1').click(function () {
+                              $(this).toggleClass('active');
+                              $('.privacy_area').toggle();
+                              return false;
+                            });
+                        //# sourceURL=pen.js
+                        </script>
+                        
+                        <div class="privacy_area">
+                        <? include "../include/privacy_include.html"; ?>
+                        </div>
+                    </dt>
+                </dl>           
+                <dl>
+                    <dt class="dis_f">보안코드</dt>
+                    <dd><input class="inp_code" title="보안코드"><span class="safecode">33333</span><span class="font_9b9b9b">왼쪽의 보안코드를 입력해주세요.</span></dd>
+                </dl>
+            </div>
+            <div class="ac mt20">
+                <button type="button" class="btn_01">확인</button>
+            </div>
+        </div>        
+    </div>
+
+</body>
+</html>

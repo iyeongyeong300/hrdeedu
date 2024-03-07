@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+
+/* login */
+.loginPage { position:relative; width:540px; margin:50px auto 0 auto;}
+.loginPage .imgArea { text-align:center;}
+.loginPage .inputArea { position:relative; padding:30px 0; text-align:center;}
+.loginPage .inputArea li { padding:5px 0;}
+.loginPage .inputArea .idSave { font-size:15px; text-align:left; padding-bottom:15px;}
+.loginPage .inputArea input { width:100%; height:54px; font-size:17px; color:#111; font-weight:bold; text-align:center;}
+.loginPage .inputArea .btn { padding:5px 0;}
+.loginPage .inputArea .btn a { background:#346edf; width:100%; height:56px; padding-top:16px; color:#fff; font-size:20px; font-weight:bold; text-decoration:none; display:inline-block;}
+.loginPage .inputArea .btn a:hover { background:#14f18c;}
+.loginPage .btnArea { text-align:center; font-size:0;}
+.loginPage .btnArea li { border-right:solid 1px #e2e2e2; display:inline-block;}
+.loginPage .btnArea li:last-child {  border-right:none;}
+.loginPage .btnArea li a { padding:0 15px; font-size:16px; color:#777; font-weight:bold; text-decoration:none; display:inline-block;}
+.loginPage .btnArea li a:hover { color:#14f18c;}
+
+
+/* ID PW searhc */
+.idpwPage { position:relative; margin:50px auto 0 auto; display:table; border-bottom:solid 1px #ebebeb; padding:50px 0; line-height:22px;}
+.idpwPage:first-child { padding-top:0;}
+.idpwPage:last-child { margin-top:0; border-bottom:none; padding-bottom:0;}
+.idpwPage .txtArea { width:470px; font-size:14px; color:#777; text-align:left; vertical-align:top; display:table-cell;}
+.idpwPage .txtArea .title { font-size:22px; color:#222; font-weight:bold; letter-spacing:-0.04em;}
+.idpwPage .inputArea { font-size:15px; text-align:left; vertical-align:top; display:table-cell;}
+.idpwPage .inputArea li { padding-bottom:10px;}
+.idpwPage .inputArea li:last-child { padding-bottom:0;}
+.idpwPage .inputArea span.item { width:90px; color:#346edf; font-weight:bold; display:inline-block;}
+.idpwPage .inputArea input,
+.idpwPage .inputArea select { height:40px; font-weight:bold; text-align:center;}
+.idpwPage .inputArea .wid01 { width:326px;}
+.idpwPage .inputArea .btn { margin-left:93px;}
+.idpwPage .inputArea .btn a { background:#346edf; width:326px; height:42px; padding-top:11px; color:#fff; font-size:16px; font-weight:bold; text-decoration:none; text-align:center; display:inline-block;}
+.idpwPage .inputArea .btn a:hover { background:#14f18c;}
+
+
+/* policy */
+.agreePage { position:relative; width:98%; margin:20px auto 0 auto; padding-bottom:20px; text-align:justify; line-height:1.6em; word-break:normal; word-wrap:break-word; word-break:break-word;}
+.agreePage .title { color:#14f18c; font-size:21px; font-weight:700; letter-spacing:-0.04em;}
+.agreePage ul { margin-top:20px;}
+.agreePage ul li { margin-top:8px;}
+
+
+/* join */
+.join_policy { position:relative; margin-top:20px; border-bottom:solid 1px #e2e2e2; border-top:solid 1px #ebebeb;}
+.join_policy .txt { padding:25px 0; line-height:1.6em;}
+.join_policy .agree { background:#f5f5f5; padding:20px 0; text-align:center; font-size:16px; font-weight:bold; color:#14f18c;}
+
+.join_input { position:relative; margin-top:20px;}
+.join_input table { width:100%; margin:0 auto; border-top:solid 1px #ebebeb;}
+.join_input th { text-align:left; color:#14f18c; line-height:normal; padding-left:15px; border-bottom:solid 1px #e2e2e2;}
+.join_input td { padding:12px 0; height:64px; text-align:left; border-bottom:solid 1px #e2e2e2;}
+.join_input input { height:40px; vertical-align:middle; padding:0 5px;}
+.join_input select { height:40px; vertical-align:middle; padding-left:5px;}
+.join_input .grow { background:#e5ffff;}
+.join_input .btnInputSm { padding-left:15px; padding-right:15px;}
+
+.join_end { position:relative; width:540px; margin:50px auto 0 auto; text-align:center; font-size:15px;}
+.join_end .imgArea { text-align:center;}
+.join_end .btn { margin-top:40px;}
+.join_end .btn a { background:#346edf; width:442px; height:56px; padding-top:17px; color:#fff; font-size:20px; font-weight:bold; text-decoration:none; vertical-align:middle; display:inline-block; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;}
+.join_end .btn a:hover { background:#14f18c;}

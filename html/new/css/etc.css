@@ -1,0 +1,8 @@
+.etc_txt_title { font-size: 1.500rem; font-weight: 400; line-height: 1.500rem; }
+.etc_txt_stitle { font-size: 1.250rem; font-weight: 400; line-height: 1.250rem; }
+.etc_txt_contents { line-height: 1.750rem; }
+.etc_txt_contents .tbltitle{ border-right:1px solid #e2e2e4;padding:1.188rem; }
+.etc_txt_dotline { padding-left: 1.250rem; background-image: url(/new/images/common/dot_line.svg); background-repeat: no-repeat; background-size: 16px 16px; background-position: 0px 6px; line-height: 1.750rem; }
+
+.privacy_menu { display: flex; flex-wrap: wrap; margin: 30px 0; padding: 1.250rem 1.250rem; border: 7px solid #e7e7e7; }
+.privacy_menu > li{ width:50%; padding: 7px;}

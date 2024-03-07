@@ -1,0 +1,102 @@
+<? include "../include/header.html"; ?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_support.html"; ?>
+
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>학습지원센터<span>></span>1:1문의
+        </div>
+    </div>
+
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a id="" href="../support/notice.html" class="tab_btn">공지사항</a>
+            </li>
+            <li>
+                <a id="" href="../support/faq.html" class="tab_btn">자주묻는 질문</a>
+            </li>
+            <li>
+                <a id="" href="../support/ask.html" class="tab_btn on">1:1 문의</a>
+            </li>
+            <li>
+                <a id="" href="../support/remote.html" class="tab_btn">PC 원격지원</a>
+            </li>
+        </ul>
+    </div>
+
+    <?
+    if(isset($_SESSION['LoginMemberID'])) { //현재 로그인 중이면 회원정보 불러오기
+
+        $Sql = "SELECT Name, AES_DECRYPT(UNHEX(Email),'$DB_Enc_Key') AS Email, AES_DECRYPT(UNHEX(Mobile),'$DB_Enc_Key') AS Mobile FROM Member WHERE ID='$LoginMemberID' AND MemberOut='N' AND UseYN='Y'";
+        $Result = mysqli_query($connect, $Sql);
+        $Row = mysqli_fetch_array($Result);
+
+        if($Row) {
+            $Name = $Row['Name']; //이름
+            $Email = $Row['Email']; //이메일
+            $Mobile = $Row['Mobile']; //휴대폰
+            $Email_Array = explode("@",$Email);
+            $Email01 = $Email_Array[0];
+            $Email02 = $Email_Array[1];
+            $Mobile_Array = explode("-",$Mobile);
+            $Mobile01 = $Mobile_Array[0];
+            $Mobile02 = $Mobile_Array[1];
+            $Mobile03 = $Mobile_Array[2];
+        }
+    }
+    ?>
+    <form name="CounselForm" method="POST" action="/support/ask_ok.php" target="ScriptFrame">
+    <input type="hidden" name="Mobile01" id="Mobile01" value="<?=$Mobile01?>">
+    <input type="hidden" name="Mobile02" id="Mobile02" value="<?=$Mobile02?>">
+    <input type="hidden" name="Mobile03" id="Mobile03" value="<?=$Mobile03?>">
+    <input type="hidden" name="Email01" id="Email01" value="<?=$Email01?>">
+    <input type="hidden" name="Email02" id="Email02" value="<?=$Email02?>">
+    <div class="question_area mt10">
+        <dl>
+            <dt>이름</dt>
+            <dd><?if($LoginMemberID) {?><input class="inp_txt" name="Name" id="Name"  title="이름" placeholder="이름을 입력해주세요." value="<?=$Name?>"><?}else{?>로그인후에 이용하세요.<?}?></dd>
+        </dl>
+        <dl>
+            <dt>문의종류</dt>
+            <dd><select name="Category" id="Category" class="inp_txt">
+                   <option value="">선택하세요</option>
+                    <?
+                    while (list($key,$value)=each($Counsel_array)) {
+                    ?>
+                   <option value="<?=$key?>"><?=$value?></option>
+                    <?
+                    }
+                    ?>
+                </select>
+            </dd>
+        </dl>
+        <dl>
+            <dt>제목</dt>
+            <dd><input class="inp_txt" name="Title" id="Title"  title="문의제목" placeholder="제목을 입력해주세요."></dd>
+        </dl>
+        <dl>
+            <dt>문의내용</dt>
+            <dd><textarea class="inp_content" name="Contents" id="Contents" type="text" value="" title="문의내용" placeholder="문의내용을 입력해주세요."></textarea></dd>
+        </dl>
+        <dl>
+            <dt>보안코드</dt>
+            <dd><img src="/include/make_image.php" alt="숫자" align="absmiddle"><input name="SecurityCode" id="SecurityCode"  class="inp_code" title="보안코드"><span class="font_9b9b9b font_s14">왼쪽의 보안코드를 입력해주세요.</span></dd>
+        </dl>
+    </div>
+    <div class="ac mt30">
+        <?if($LoginMemberID) {?>
+        <div id="SubmitBtn">
+        <button type="button" class="btn_01" onclick="Javascript:CounselSubmit();">확인</button>
+        </div>
+        <?}else{?>
+        <div id="SubmitBtn">
+        <button type="button" class="btn_01" onclick="Javascript:LoginCheck();">확인</button>
+        </div>
+        <?}?>
+    </div>
+    </form>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

@@ -1,0 +1,134 @@
+<?
+$list_page = "discussion.html";
+$read_page = "discussion_view.html";
+?>
+<? include "../include/header.html"; ?>
+<?
+include "../include/login_check.php";
+?>
+<?
+$idx = Replace_Check($idx);
+
+$Sql = "UPDATE DiscussionAnswer SET ViewCount=ViewCount+1 WHERE idx=$idx";
+$Row = mysqli_query($connect, $Sql);
+
+$Sql = "SELECT co.ContentsName, t.Topic,da.* FROM DiscussionAnswer AS da
+					INNER JOIN Chapter AS ca ON da.Chapter_Seq = ca.Seq 
+					INNER JOIN DiscussionTopic AS t ON ca.Sub_idx = t.idx 
+					INNER JOIN Course AS co ON da.LectureCode = co.LectureCode
+					WHERE da.idx=$idx AND da.ID='$LoginMemberID' AND da.Del='N'";
+					 
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+
+if($Row) {
+	$ID 	= $Row['ID'];
+	$ContentsName = $Row['ContentsName'];
+	$Topic = $Row['Topic'];
+	$UserAnswer = $Row['UserAnswer'];
+	$TutorRemark = $Row['TutorRemark'];
+	$RegDate = $Row['RegDate'];
+	$RegDate2 = $Row['RegDate2'];
+	
+}else{
+?>
+<script type="text/javascript">
+<!--
+//	location.href="discussion.html";
+//-->
+</script>
+<?
+exit;
+}
+
+$BOARD_TITLE = $Title." > ";
+?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_mypage.html"; ?>
+
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>나의학습실<span>></span>자료/상담관리<span>></span>토론방
+        </div>
+    </div>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="../mypage/lecture.html" class="tab_btn">수강관리</a>
+            </li>
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn">수강신청/결제관리</a>
+            </li>
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn on">자료/상담관리</a>
+            </li>
+            <?if($LoginEduManager=="Y") {?>
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn">교육담당자</a>
+            </li>         
+            <? } ?>
+            <li>
+                <a href="../mypage/memberinfo.html" class="tab_btn">회원정보관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn">찜한 학습자료</a>
+            </li>
+						<li>
+                <a href="../mypage/discussion.html" class="tab_btn on">토론방</a>
+            </li>
+            <li>
+                <a href="../mypage/advicelst.html" class="tab_btn on">1:1 상담 리스트</a>
+            </li>
+            <li>
+                <a href="../mypage/studylst.html" class="tab_btn">학습 상담 리스트</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="info_area mt30">
+        <dl class="info_tilte">
+            <dd><?=$Title?></dd>
+        </dl>
+        <div class="info_date">
+            <dl>
+                <dt>토픽</dt>
+                <dd><?=$Topic?></dd>
+                <dd>I</dd>
+                <dt>등록일</dt>
+                <dd><?=substr($RegDate,0,10)?></dd>
+            </dl>
+        </div>
+
+        <div class="info_content"><?=$UserAnswer?></div>
+
+      <?if($TutorRemark !="") {?>
+        <ul class="answer_area">
+            <li><span class="answer_icon">답변</span></li>
+            <li>
+                 <div class="answer_content"><?=$TutorRemark?></div>
+                <div class="answer_writer">
+                    <dl>
+                     <!--   <dt>작성자</dt>
+                        <dd><?=$Name2?></dd>
+                        <dd>I</dd>-->
+                        <dt>등록일</dt>
+                        <dd><?=substr($RegDate2,0,10)?></dd>
+                    </dl>
+                </div>
+            </li>
+            
+        </ul> 
+        <?}?>
+        <div class="ac mt30">
+            <button type="button" class="btn_01g ml10" onclick="window.location.href='<?=$list_page?>?pg=<?=$pg?>&sw=<?=$sw?>'">목록</button>
+        </div>
+        <div mt30></div>
+    </div>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

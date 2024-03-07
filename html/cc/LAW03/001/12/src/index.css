@@ -1,0 +1,59 @@
+body{
+    margin : 0px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#_skipBtn{
+    background: url('./img/btn_skip.png') no-repeat;
+    background-size: 100% 100%;
+    width: 256px;
+    height: 86px;
+    left: 920px;
+    top: 540px;
+    position: absolute;
+    z-index: 3;
+    display: none;
+}
+#_skipBtn:hover{
+    background: url('./img/btn_skip_over.png') no-repeat;
+    background-size: 100% 100%;
+    width: 256px;
+    height: 86px;
+    left: 920px;
+    top: 540px;
+    position: absolute;
+    z-index: 3;
+}
+#_AtLastBalloon {
+    background: url('./img/balloon_last.png') no-repeat;
+    background-size: 100% 100%;
+    width: 115px;
+    height: 86px;
+    left: 892px;
+    top: 590px;
+    position: absolute;
+    z-index: 3;
+}
+#_nextBalloon{
+    background: url('./img/balloon_next.png') no-repeat;
+    background-size: 100% 100%;
+    width: 115px;
+    height: 86px;
+    left: 892px;
+    top: 590px;
+    position: absolute;
+    display: none;
+    z-index: 7;
+}
+#_lastBalloon{
+    background: url('./img/balloon_last.png') no-repeat;
+    background-size: 100% 100%;
+    width: 115px;
+    height: 86px;
+    left: 892px;
+    top: 590px;
+    position: absolute;
+    display: none;
+    z-index: 7;
+}

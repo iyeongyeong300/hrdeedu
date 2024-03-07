@@ -1,0 +1,194 @@
+<? include "../include/header.html"; ?>
+<?
+include "../include/login_check.php";
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#SearchYear").change(function(){
+			$("#changeList").load(location.href+" #changeList",{SearchYear: $('#SearchYear').val()});
+		});
+	});
+</script>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_mypage.html"; ?>
+	<?
+	if($LoginEduManager!="Y") {
+	?>
+	<script type="text/javascript">
+	<!--
+		location.href="../main/main.html";
+	//-->
+	</script>
+	<?
+	exit;
+	}
+	?>
+	
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>나의학습실<span>></span>교육담당자<span>></span>수료 관리
+        </div>
+    </div>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="../mypage/lecture.html" class="tab_btn">수강관리</a>
+            </li>
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn">수강신청/결제관리</a>
+            </li>
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn">자료/상담관리</a>
+            </li>  
+            <?if($LoginEduManager=="Y") {?>
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn on">교육담당자</a>
+            </li>         
+            <? } ?>
+            <li>
+                <a href="../mypage/memberinfo.html" class="tab_btn">회원정보관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn">자사수강생 리스트</a>
+            </li>
+            <li>
+                <a href="../mypage/manager_payment.html" class="tab_btn">자부담금 관리</a>
+            </li>
+            <li>
+                <a href="../mypage/manager_complete.html" class="tab_btn on">수료 관리</a>
+            </li>                        
+        </ul>
+    </div>
+    <ul class="studentlst">
+    	<select name="SearchYear" id="SearchYear" style="padding: 1px 5px;padding-right: 25px;position: relative;background-size: auto 30px;height:50px;width:150px; margin-top:10px;border: 2px solid #4CA4D4;">
+			<option value="">년도 검색</option>
+			<?for($i=2018;$i<=date("Y");$i++) { ?>
+			<option value="<?=$i?>"><?=$i?>년</option>
+			<?}?>
+       	</select>
+        <!-- List -->
+        <li id="changeList">
+        <!-- info list -->
+        <?
+		$Sql = "SELECT *, (SELECT CompanyName FROM Company WHERE CompanyCode=Member.CompanyCode LIMIT 0,1) AS CompanyName FROM Member WHERE ID='$LoginMemberID' AND MemberOut='N' AND UseYN='Y'";
+        $Result = mysqli_query($connect, $Sql);
+        $Row = mysqli_fetch_array($Result);
+
+        if($Row) {
+            $CompanyCode = $Row['CompanyCode']; //사업자 번호
+            $CompanyName = $Row['CompanyName']; //소속기업명
+        }
+        $i = 1;
+
+		if($SearchYear){
+			$where = " WHERE a.CompanyCode='$CompanyCode' AND a.ServiceType IN (1,3,5,9) AND YEAR(a.LectureStart)= '$SearchYear' ";
+    	}else{			    
+        	$where = " WHERE a.CompanyCode='$CompanyCode' AND a.ServiceType IN (1,3,5,9) ";
+    	}
+
+        $SQL = "SELECT DISTINCT a.LectureStart AS LectureStart, a.LectureEnd 
+				FROM Study AS a 
+				LEFT OUTER JOIN Company AS b ON a.CompanyCode=b.CompanyCode 
+				$where
+				ORDER BY a.LectureStart ASC, a.LectureEnd ASC ";
+
+        $QUERY = mysqli_query($connect, $SQL);
+        if($QUERY && mysqli_num_rows($QUERY)){
+            while($ROW = mysqli_fetch_array($QUERY)){
+                extract($ROW);
+
+                if($LectureEnd){
+					if(date("Y-m-d", strtotime($LectureEnd.'+ 7 days'))>date('Y-m-d')){
+						$CertificatePrintOK = "N";
+                    }else{
+                        $CertificatePrintOK = "Y";
+                    }
+                }else{
+                    $CertificatePrintOK = "N";
+                }
+                ?>
+                <ul class="classdate">
+                    <li class="left"><?=$LectureStart?> ~ <?=$LectureEnd?> 개강</li>
+                    <!--<li class="right mr5"><a href="Javascript:CertificatePrintMulti('<?=$CompanyCode?>','<?=$LectureStart?>','<?=$LectureEnd?>','','Y','<?=$CertificatePrintOK?>');">전체 환급과정 수료증PDF</a></li>
+                    <li class="right"><a href="Javascript:CertificatePrintMulti('<?=$CompanyCode?>','<?=$LectureStart?>','<?=$LectureEnd?>','','N','<?=$CertificatePrintOK?>');">전체 비환급과정 수료증PDF</a></li>-->
+                </ul>
+                <?
+               $SQL2 = "SELECT DISTINCT a.CompanyCode, c.ServiceType, c.Category1, c.Category2, c.ContentsName, c.LectureCode, 
+						(SELECT CategoryName FROM CourseCategory WHERE idx=c.Category1) AS Category1Name, 
+						(SELECT COUNT(*) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND LectureCode=a.LectureCode AND PassOk='Y') AS StudyCount, 
+						(SELECT COUNT(*) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND LectureCode=a.LectureCode AND PassOk='N') AS StudyBeCount 
+						FROM Study AS a 
+						LEFT OUTER JOIN Company AS b ON a.CompanyCode=b.CompanyCode 
+						LEFT OUTER JOIN Course AS c ON a.LectureCode=c.LectureCode
+						WHERE b.CompanyCode='$CompanyCode' AND a.ServiceType IN (1,3,5,9) AND a.LectureStart='$LectureStart' AND a.LectureEnd='$LectureEnd' ORDER BY c.ContentsName ASC";
+                $QUERY2 = mysqli_query($connect, $SQL2);
+                if($QUERY2 && mysqli_num_rows($QUERY2)){
+                    while($ROW2 = mysqli_fetch_array($QUERY2)){
+
+                        $StudyCount = $ROW2['StudyCount']; //수료인원
+                        $StudyBeCount = $ROW2['StudyBeCount']; //미수료인원
+
+                        $StudySum = $StudyCount + $StudyBeCount; //전체인원
+
+                        $Category1Name = $ROW2['Category1Name'];
+                        $ContentsName = $ROW2['ContentsName'];
+                        $LectureCode = $ROW2['LectureCode'];
+                        $ServiceType = $ROW2['ServiceType'];
+										
+                        if($ServiceType=='1'){
+                            $ServiceTypeYN = 'Y';
+                        }else{
+                            $ServiceTypeYN = 'N';
+                        }
+
+						?>
+                        <table width="100%" class="tbl_typeD mt15" border="0" cellspacing="0" summary="">
+                            <caption></caption>
+                            <colgroup>
+                            <col width=""><col width="15%"><col width="15%">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">
+                                        <ul class="baseinfo">
+                                            <li class="subname"><?=$Category1Name?></li>
+                                            <li class="name"><?=$ContentsName?></li>
+                                            <li class="refund"><?=$ServiceType_array[$ServiceType]?></span></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div>수료인원: <span class="font_red"><?=$StudyCount?>명</span></div>
+                                        <div class="mt5">전체인원: <?=$StudySum?>명</div>
+                                    </td>
+                                    <td>
+                                        <div><button type="button" class="btn_02" onclick="CertificatePrintMulti('<?=$CompanyCode?>','<?=$LectureStart?>','<?=$LectureEnd?>','<?=$LectureCode?>','<?=$ServiceTypeYN?>','<?=$CertificatePrintOK?>')">수료증 PDF</button></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>	
+                        <?
+                        $k++;
+                    }
+                }
+                $i++;
+            }
+        }else{
+        ?>
+            <ul>수강 내역이 없습니다.</ul>
+        <? 
+        } 
+        ?>
+        <!-- info list // -->
+        </li>
+        <!-- List //-->           
+    </ul>
+    
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

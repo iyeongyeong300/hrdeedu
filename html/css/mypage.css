@@ -1,0 +1,148 @@
+@charset "utf-8";
+
+
+.PageZone { position:relative;}
+
+
+.PageZone .myList { position:relative;}
+.PageZone .myList .area { position:relative; width:100%; border-bottom:solid 1px #ebebeb; padding-bottom:40px; margin-top:40px;}
+.PageZone .myList .area:first-child { margin-top:0;}
+.PageZone .myList .area .title { width:550px; font-size:20px; color:#000; font-weight:800; line-height:26px;}
+.PageZone .myList .area .title a:hover { color:#0f97af;}
+.PageZone .myList .area .lecInfo { margin-top:15px; font-size:15px; color:#555;}
+.PageZone .myList .area .lecInfo p { margin-top:10px;}
+.PageZone .myList .area .lecInfo p span { font-size:14px; color:#999; font-weight:bold;}
+.PageZone .myList .area .lecInfo p strong { font-size:17px; color:#0f6caf; letter-spacing:-0.05em;}
+.PageZone .myList .area .lecInfo em { margin:0 10px; color:#bbbbbb; font-style:normal;}
+.PageZone .myList .area .lecBtn { margin-top:20px; line-height:20px;}
+.PageZone .myList .area .checkArea { position:absolute; top:0; right:0; font-size:0; border:solid 1px #0f97af; -webkit-border-radius:12px; -moz-border-radius:12px; border-radius:12px;}
+.PageZone .myList .area .checkArea dl { border-right:solid 1px #0f97af; width:130px; height:153px; font-size:15px; line-height:1.4em; text-align:center; vertical-align:middle; display:inline-block;}
+.PageZone .myList .area .checkArea dl:last-child { border-right:none; width:129px;}
+.PageZone .myList .area .checkArea dl dt { border-bottom:solid 1px #0f97af; margin-top:10px; padding-bottom:10px; font-size:14px; color:#0f97af; font-weight:bold;}
+.PageZone .myList .area .checkArea dl dd { padding:0 10px; width:129px; height:111px; vertical-align:middle; display:table-cell;}
+.PageZone .myList .area .checkArea dl dd .txt { margin-bottom:5px; font-weight:bold; font-size:17px;}
+.PageZone .myList .area .checkArea dl dd .notxt { font-size:26px; color:#999; letter-spacing:-0.05em;}
+.PageZone .myList .area .checkArea dl dd .notxt strong { color:#ff2a3b;}
+
+.PageZone .myLectureList { position:relative;}
+.PageZone .myLectureList ul { position:relative; width:100%; border-bottom:solid 1px #e2e2e2; display:table;}
+.PageZone .myLectureList ul li { padding:20px 0; text-align:center; vertical-align:middle; display:table-cell;}
+.PageZone .myLectureList ul li:nth-child(1) { width:70px;}
+.PageZone .myLectureList ul li:nth-child(3) { width:120px;}
+.PageZone .myLectureList ul li:nth-child(4) { width:160px;}
+.PageZone .myLectureList .on { color:#000; border:solid 5px #ff7e00;}
+.PageZone .myLectureList .off { background:#efefef; color:#666;}
+.PageZone .myLectureList .infoArea { text-align:left; font-size:14px; line-height:1.5em;}
+.PageZone .myLectureList .infoArea .title { font-size:19px; font-weight:bold;}
+.PageZone .myLectureList .btnViewTy01 { background:url(../images/common/bul_play01.png) no-repeat 100px center #b7b7b7; width:120px; padding:8px 0 8px 20px; color:#fff; font-weight:bold; line-height:30px; text-align:left; text-decoration:none; display:inline-block;}
+.PageZone .myLectureList .btnViewTy02 a { background:url(../images/common/bul_play01.png) no-repeat 100px center #ff7e00; width:120px; padding:8px 0 8px 20px; color:#fff; font-weight:bold; line-height:30px; text-align:left; text-decoration:none; display:inline-block;}
+.PageZone .myLectureList .btnViewTy02 a:hover { background:url(../images/common/bul_play01.png) no-repeat 100px center #888;}
+.PageZone .myLectureList .btnViewTy03 a { background:#0f97af; width:120px; padding:8px 0; color:#fff; font-weight:bold; line-height:30px; text-align:center; text-decoration:none; display:inline-block;}
+.PageZone .myLectureList .btnViewTy03 a:hover { background:#888;}
+
+.PageZone .myOtherList { position:relative;}
+.PageZone .myOtherList .area { position:relative; width:100%; border-bottom:solid 1px #ebebeb; padding-bottom:40px; margin-top:40px; display:table;}
+.PageZone .myOtherList .area:first-child { margin-top:0;}
+.PageZone .myOtherList .area li { vertical-align:middle; display:table-cell;}
+.PageZone .myOtherList .area .cate { margin-bottom:10px; font-size:14px; color:#888; font-weight:;}
+.PageZone .myOtherList .area .title { width:550px; font-size:20px; color:#000; font-weight:800; line-height:26px;}
+.PageZone .myOtherList .area .title a:hover { color:#0f97af;}
+.PageZone .myOtherList .area .lecInfo { margin-top:15px; font-size:15px; color:#555;}
+.PageZone .myOtherList .area .lecInfo p { margin-top:10px;}
+.PageZone .myOtherList .area .lecInfo p span { font-size:14px; color:#999; font-weight:bold;}
+.PageZone .myOtherList .area .lecInfo p strong { font-size:17px; color:#0f6caf; letter-spacing:-0.05em;}
+.PageZone .myOtherList .area .lecInfo em { margin:0 10px; color:#bbbbbb; font-style:normal;}
+
+.PageZone .viewTab { background:#aaaaaa;}
+.PageZone .viewTab .area { width:100%; margin:0 auto; display:table;}
+.PageZone .viewTab .area li { width:33.33%; border-right:solid 1px #fff; text-align:center; display:table-cell;}
+.PageZone .viewTab .area li:last-child { border-right:none;}
+.PageZone .viewTab .area li a { width:100%; padding:15px 0; color:#fff; font-size:17px; font-weight:bold; text-align:center; text-decoration:none; display:inline-block;}
+.PageZone .viewTab .area li a:hover { color:#000;}
+.PageZone .viewTab .area li a.show { background:#0f6caf; color:#fff;}
+
+.PageZone .myManagerList { position:relative;}
+.PageZone .myManagerList .term { position:relative; margin-top:40px;}
+.PageZone .myManagerList .term:first-child { margin-top:0;}
+.PageZone .myManagerList .term strong { background:#555; padding:10px 20px; font-size:17px; color:#fff; font-weight:bold; letter-spacing:-0.03em; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px; display:inline-block;}
+.PageZone .myManagerList .term .title { font-size:20px; color:#000; font-weight:800; line-height:26px;}
+.PageZone .myManagerList .term .btnMyBase01 a { border:solid 1px #0f6caf; font-size:14px; padding:11px 10px; font-weight:bold; color:#0f6caf;}
+.PageZone .myManagerList .term .btnMySky01 a { font-size:14px; padding:11px 10px; font-weight:bold;}
+.PageZone .myManagerList .area { position:relative; width:100%; margin-top:10px; border:solid 1px #0f97af; display:table;}
+.PageZone .myManagerList .area:hover { background:#ecf6f8;}
+.PageZone .myManagerList .area li { border-right:solid 1px #0f97af; vertical-align:middle; display:table-cell;}
+.PageZone .myManagerList .area .baseInfo { padding:25px; font-weight:bold; color:#333;}
+.PageZone .myManagerList .area .baseInfo .title { margin-top:5px; font-size:20px; color:#000; font-weight:800; line-height:26px;}
+.PageZone .myManagerList .area .baseInfo .noTxt { margin-top:15px; font-size:17px;}
+.PageZone .myManagerList .area .baseInfo .noTxt dd { margin-right:20px; display:inline-block;}
+.PageZone .myManagerList .area .baseInfo .noTxt dd span { color:#0f97af;}
+.PageZone .myManagerList .area .noDetail { width:180px; font-size:16px; text-align:center; line-height:1.5em;}
+.PageZone .myManagerList .area .noDetail p { padding:10px 0;}
+.PageZone .myManagerList .area .noDetail p:last-child { border-top:solid 1px #0f97af;}
+.PageZone .myManagerList .area .noDetail span { font-size:14px; color:#0f97af; font-weight:bold;}
+.PageZone .myManagerList .area .noDetail strong { color:#ff2a3b;}
+.PageZone .myManagerList .area .btnArea { width:120px; border-right:none; text-align:center;}
+.PageZone .myManagerList .area .btnArea .btnDetail a { background:url(../images/common/icon_detailview01.png) no-repeat center 10px; padding:45px 20px 10px 20px; font-weight:bold; display:inline-block;}
+.PageZone .myManagerList .area .payInfo { width:130px; font-size:16px; text-align:center; line-height:1.5em;}
+.PageZone .myManagerList .area .payInfo p { padding:10px 0;}
+.PageZone .myManagerList .area .payInfo p:last-child { border-top:solid 1px #0f97af;}
+.PageZone .myManagerList .area .payInfo span { font-size:14px; color:#0f97af; font-weight:bold;}
+.PageZone .myManagerList .area .payInfo strong { color:#ff2a3b;}
+.PageZone .myManagerList .area .checkArea { width:110px; border-right:none; text-align:center; line-height:1.5em;}
+.PageZone .myManagerList .area .checkArea span { font-size:14px; color:#0f97af; font-weight:bold;}
+.PageZone .myManagerList .area .checkArea p { margin-top:5px;}
+.PageZone .myManagerList .area .selArea { width:24px; padding-left:25px; border-right:none;}
+.PageZone .myManagerList .btnAreaTl01 { margin-left:-3px;}
+
+
+
+
+/* shopping XXXXXX */
+.PageZone .basketList {}
+.PageZone .basketList table { width:100%; margin:0 auto; font-size:14px; border-bottom:solid 1px #cccccc;}
+.PageZone .basketList table th { text-align:center; color:#fff; border-right:solid 1px #fff; background:#aaaaaa; padding:12px 0; font-weight:400;}
+.PageZone .basketList table td { text-align:center; color:#666; padding:15px 0; height:31px; border-top:solid 1px #cccccc;}
+.PageZone .basketList table tr:hover { background:#f4fcff;}
+.PageZone .basketList table th:last-child,
+.PageZone .basketList table td:last-child { border-right:none;}
+.PageZone .basketList table td.title { padding:0 10px; text-align:left; color:#333; font-size:17px; font-weight:500;}
+.PageZone .basketList table td.title p { margin-top:5px; color:#777; font-size:14px; font-weight:400;}
+.PageZone .basketList table td.title p em { padding:0 5px; color:#ccc; font-weight:300; font-style:normal;}
+.PageZone .basketList td .txtInfo { position:relative; text-align:left; display:table;}
+.PageZone .basketList td .txtInfo .imgArea { width:100px; padding-right:20px; font-size:0; vertical-align:top; display:table-cell; box-sizing:border-box;}
+.PageZone .basketList td .txtInfo .imgArea img { width:100px; border:solid 1px #e2e2e2;}
+.PageZone .basketList td .txtInfo .imgArea .name { text-align:center; margin-top:5px; font-size:13px;}
+.PageZone .basketList td .txtInfo .infoArea { vertical-align:top; display:table-cell;}
+.PageZone .basketList td .txtInfo .infoArea .icon { font-size:0; line-height:normal;}
+.PageZone .basketList td .txtInfo .infoArea .icon img { margin-right:3px; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.PageZone .basketList td .txtInfo .infoArea .title { margin-top:15px; color:#333; font-size:17px; font-weight:500;}
+.PageZone .basketList td .txtInfo .infoArea .txt { margin-top:10px; color:#777;}
+.PageZone .basketList td .txtInfo .infoArea .txt em { padding:0 5px; color:#ccc; font-weight:300; font-style:normal;}
+.PageZone .basketList td .bookNo { font-size:0;}
+.PageZone .basketList td .bookNo input { width:40px; height:22px; text-align:center; margin-right:5px;}
+.PageZone .basketList td .bookNo .noEdit { margin:0 5px 0 -3px; width:23px; vertical-align:middle; display:inline-block;}
+
+.PageZone .orderTotal { position:relative; border:solid 3px #262262; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.PageZone .orderTotal .title { background:#262262; color:#fff; font-size:22px; padding:4px 0 10px 0; text-align:center;}
+.PageZone .orderTotal .infoArea { width:100%; display:table;}
+.PageZone .orderTotal .infoArea li { border-right:solid 1px #cccccc; text-align:center; display:table-cell;}
+.PageZone .orderTotal .infoArea li:last-child { border-right:none;}
+.PageZone .orderTotal .infoArea li strong { width:100%; background:#f0f0f0; padding:10px 0; font-weight:400; display:inline-block;}
+.PageZone .orderTotal .infoArea li p { padding:10px 0;}
+.PageZone .orderTotal .orderNO { border-bottom:solid 1px #cccccc; padding:15px 25px;}
+.PageZone .orderTotal .orderNO li { color:#0094d0; display:inline-block;}
+.PageZone .orderTotal .orderNO li strong { color:#777; font-weight:400;}
+.PageZone .orderTotal .orderNO li.payment { position: absolute; right:25px;}
+
+.PageZone .orderInput { position:relative;}
+.PageZone .orderInput table { width:100%; margin:0 auto; border-top:solid 1px #cccccc;}
+.PageZone .orderInput table tr { border-bottom:solid 1px #cccccc;}
+.PageZone .orderInput table th { text-align:left; color:#4687a2; font-weight:400; padding:10px 0 10px 20px; }
+.PageZone .orderInput table td { text-align:left; height:30px; padding:10px;}
+.PageZone .orderInput table .rLine { border-right:solid 1px #cccccc;}
+.PageZone .orderInput input { height:34px; vertical-align:middle; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.PageZone .orderInput .payment { border-top:solid 1px #cccccc;}
+.PageZone .orderInput .payment li { border-bottom:solid 1px #cccccc; padding:20px;}
+.PageZone .orderInput .payment li strong {color:#111; vertical-align:middle;}
+.PageZone .orderInput .payment li p { margin:5px 0 0 24px; font-size:15px; color:#777;}
+

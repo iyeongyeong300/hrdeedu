@@ -1,0 +1,104 @@
+<?
+$list_page = "notice.html";
+$read_page = "notice_view.html";
+?>
+<? include "../include/header.html"; ?>
+<?
+$idx = Replace_Check($idx);
+
+$Sql = "UPDATE Notice SET ViewCount=ViewCount+1 WHERE idx=$idx";
+$Row = mysqli_query($connect, $Sql);
+
+$Sql = "SELECT * FROM Notice WHERE idx=$idx AND UseYN='Y' AND Del='N'";
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+
+if($Row) {
+    $Notice = $Row['Notice'];
+    $Title = $Row['Title'];
+    $Content = stripslashes($Row['Content']);
+    $FileName1 = $Row['FileName1'];
+    $RealFileName1 = $Row['RealFileName1'];
+    $FileName2 = $Row['FileName2'];
+    $RealFileName2 = $Row['RealFileName2'];
+    $FileName3 = $Row['FileName3'];
+    $RealFileName3 = $Row['RealFileName3'];
+    $FileName4 = $Row['FileName4'];
+    $RealFileName4 = $Row['RealFileName4'];
+    $FileName5 = $Row['FileName5'];
+    $RealFileName5 = $Row['RealFileName5'];
+    $ViewCount = $Row['ViewCount'];
+    $RegDate = $Row['RegDate'];
+}else{
+?>
+<script type="text/javascript">
+<!--
+    location.href="notice.php";
+//-->
+</script>
+<?
+exit;
+}
+
+$BOARD_TITLE = $Title." > ";
+?>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_support.html"; ?>
+
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>학습지원센터<span>></span>공지사항
+        </div>
+    </div>
+
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a id="" href="../support/notice.html" class="tab_btn on">공지사항</a>
+            </li>
+            <li>
+                <a id="" href="../support/faq.html" class="tab_btn">자주묻는 질문</a>
+            </li>
+            <li>
+                <a id="" href="../support/ask.html" class="tab_btn">1:1 문의</a>
+            </li>
+            <li>
+                <a id="" href="../support/remote.html" class="tab_btn">PC 원격지원</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="info_area mt30">
+        <dl class="info_tilte">
+            <dt class="font_4ca4d4 mr15"><?if($Notice=="Y") {?>공지<?}?></dt>
+            <dd><?=$Title?></dd>
+        </dl>
+        <div class="info_date">
+            <dl>
+                <dt>등록일</dt>
+                <dd><?=substr($RegDate,0,10)?></dd>
+                <dd>I</dd>
+                <dt>조회</dt>
+                <dd><?=$ViewCount?></dd>
+            </dl>
+            <div class="infofile">
+                <?if($FileName1) { ?><a href="../include/download.php?idx=<?=$idx?>&code=Notice&file=1"><span class="downicon cursor"><?=$RealFileName1?></span></a><?}?>
+                <?if($FileName2) { ?><a href="../include/download.php?idx=<?=$idx?>&code=Notice&file=2"><span class="downicon cursor"><?=$RealFileName2?></span></a><?}?>
+                <?if($FileName3) { ?><a href="../include/download.php?idx=<?=$idx?>&code=Notice&file=3"><span class="downicon cursor"><?=$RealFileName3?></span></a><?}?>
+                <?if($FileName4) { ?><a href="../include/download.php?idx=<?=$idx?>&code=Notice&file=4"><span class="downicon cursor"><?=$RealFileName4?></span></a><?}?>
+                <?if($FileName5) { ?><a href="../include/download.php?idx=<?=$idx?>&code=Notice&file=5"><span class="downicon cursor"><?=$RealFileName5?></span></a><?}?>
+            </div>
+        </div>
+
+        <div class="info_content">
+            <?=$Content?>
+        </div>
+        <div class="ac mt30">
+            <button type="button" class="btn_01g ml10" onclick="window.location.href='<?=$list_page?>?pg=<?=$pg?>&sw=<?=$sw?>'">목록</button>
+        </div>
+        <div mt30></div>
+    </div>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

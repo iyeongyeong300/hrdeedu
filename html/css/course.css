@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+
+.PageZone { width:100%; position:relative;}
+.PageZone.mt20m { margin-top:-20px;}
+
+.modeMark { font-size:0; line-height:normal;}
+.modeMark img { margin-right:3px; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+
+.reviewArea { position:relative;}
+.reviewArea .starInfo { font-size:13px; color:#666}
+.reviewArea .starInfo span { margin-left:5px; vertical-align:middle;}
+.reviewArea .starInfo .item { font-size:14px; color:#ff6000;}
+.reviewArea .starInfo .star { font-size:0; line-height:normal;}
+.reviewArea .starInfo .star img { margin-right:2px; vertical-align:middle;}
+.reviewArea .list { margin-top:20px; border-top:solid 1px #e2e2e2; font-size:14px; color:#666; line-height:20px;}
+.reviewArea .list li { position:relative; border-bottom:solid 1px #e2e2e2; padding:16px 10px;}
+.reviewArea .list li strong { color:#333;}
+.reviewArea .list li strong span { margin-left:20px;}
+.reviewArea .list li p { margin-top:10px;}
+
+.PageZone .lectureList { position:relative;}
+.PageZone .lectureList ul { width:100%; border-bottom:solid 1px #ebebeb; padding-bottom:40px; margin-top:40px; display:table;}
+.PageZone .lectureList ul:first-child { margin-top:0;}
+.PageZone .lectureList ul li { vertical-align:top; display:table-cell;}
+.PageZone .lectureList .imgArea { width:420px;}
+.PageZone .lectureList .imgArea img { width:390px; height:220px; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.PageZone .lectureList .infoArea { position:relative;}
+.PageZone .lectureList .infoArea .title { line-height:26px;}
+.PageZone .lectureList .infoArea .title a { width:100%; font-size:20px; color:#000; font-weight:800; text-decoration:none; display:inline-block;}
+.PageZone .lectureList .infoArea .title a:hover { color:#0f97af;}
+.PageZone .lectureList .infoArea .lecInfo { margin-top:15px; font-size:15px; color:#555;}
+.PageZone .lectureList .infoArea .lecInfo span { margin-right:30px;}
+.PageZone .lectureList .infoArea .lecInfo span:last-child { margin-right:0;}
+.PageZone .lectureList .infoArea .lecInfo em { color:#bbbbbb; font-style:normal;}
+.PageZone .lectureList .infoArea .priceInfo { margin-top:15px; color:#999; font-size:18px; font-weight:bold;}
+.PageZone .lectureList .infoArea .priceInfo .btnSmLine02 { position:relative; top:-1px; padding-left:10px; font-weight:normal;}
+.PageZone .lectureList .infoArea .lecBtn { position:absolute; bottom:0;}
+.PageZone .lectureList .modeMark { margin-top:10px;}
+
+
+.lectureViewZone { position:relative; width:100%; margin:0 auto;}
+.lectureViewZone h4 { background:none; margin-top:0; padding-top:0; font-size:22px; color:#0f6caf;}
+.lectureViewZone hr { margin-top:40px; border:none; height:1px; background:#ebebeb; color:#ebebeb}
+.lectureViewZone .titleArea { text-align:center; }
+.lectureViewZone .titleArea strong { font-size:30px; font-weight:800; line-height:36px;}
+.lectureViewZone .modeMark { margin-top:10px; line-height:normal;}
+.lectureViewZone .baseInfo { position:relative; width:100%; margin-top:30px; border-bottom:solid 1px #ebebeb; padding-bottom:40px; display:table;}
+.lectureViewZone .baseInfo .imgArea { width:450px; vertical-align:top; display:table-cell;}
+.lectureViewZone .baseInfo .imgArea img { width:450px; height:254px; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.lectureViewZone .baseInfo .infoArea { position:relative; padding-left:30px; vertical-align:top; display:table-cell;}
+.lectureViewZone .baseInfo .infoArea .txt { border-top:solid 1px #ebebeb; font-size:17px; font-weight:bold;}
+.lectureViewZone .baseInfo .infoArea .txt li { border-bottom:solid 1px #ebebeb; padding:12px 15px;}
+.lectureViewZone .baseInfo .infoArea .txt strong { width:90px; font-size:15px; color:#0f97af; font-weight:700; display:inline-block; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.lectureViewZone .baseInfo .infoArea .txt em { color:#bbbbbb; font-style:normal; font-weight:normal;}
+.lectureViewZone .baseInfo .infoArea .lecBtn { position:absolute; bottom:0; width:500px; text-align:center;}
+.lectureViewZone .baseInfo .infoArea .lecBtn a { width:183px;}
+.lectureViewZone .selectInfo { position:relative; margin-top:-1px; background:#e1eaef; padding-top:30px;}
+.lectureViewZone .selectInfo h4 { text-align:center;}
+.lectureViewZone .selectInfo .radioList { margin-top:20px; padding:0 40px; font-size:17px; font-weight:bold; text-align:center;}
+.lectureViewZone .selectInfo .radioList li { margin-top:0; padding:15px; border-top:solid 1px #c3d9e5;}
+.lectureViewZone .selectInfo .lecBtn { margin-top:10px; text-align:center;}
+.lectureViewZone .selectInfo .lecBtn a { width:100%; -webkit-border-radius:0; -moz-border-radius:0; border-radius:0;}
+.lectureViewZone .eduInfo { position:relative;}
+.lectureViewZone .eduInfo h4 { margin-top:40px;}
+.lectureViewZone .infoTable01 { width:100%; margin:0 auto; border:solid 2px #0f97af;}
+.lectureViewZone .infoTable01 th { background:#f5f5f5; border-right:solid 1px #0f97af; padding:10px; color:#0f97af; text-align:center;}
+.lectureViewZone .infoTable01 td { border-top:solid 1px #0f97af; border-right:solid 1px #0f97af; padding:10px;}
+.lectureViewZone .viewTab { margin-top:50px; background:#aaaaaa;}
+.lectureViewZone .viewTab .area { width:100%; margin:0 auto; display:table;}
+.lectureViewZone .viewTab .area li { width:33.33%; border-right:solid 1px #fff; text-align:center; display:table-cell;}
+.lectureViewZone .viewTab .area li:last-child { border-right:none;}
+.lectureViewZone .viewTab .area li a { width:100%; padding:15px 0; color:#fff; font-size:17px; font-weight:bold; text-align:center; text-decoration:none; display:inline-block;}
+.lectureViewZone .viewTab .area li a:hover { color:#000;}
+.lectureViewZone .viewTab .area li a.show { background:#0f6caf; color:#fff;}
+.lectureViewZone .lecDetail { line-height:24px;}
+.lectureViewZone .lecDetail .area { width:100%;}
+.lectureViewZone .lecDetail .area li { position:relative; margin-top:25px; background:url(../images/common/line_lecture_detail.png) no-repeat left bottom; padding:0 0 28px 135px;}
+.lectureViewZone .lecDetail .area li:last-child { background:none; padding-bottom:0;}
+.lectureViewZone .lecDetail .area li strong { position:absolute; left:0; top:1px; font-size:17px; color:#0f97af;}
+

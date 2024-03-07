@@ -1,0 +1,254 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 및 각종 함수 정의
+?>
+<!DOCTYPE HTML>
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"> -->
+<title><?=$SiteName?></title>
+<link rel="stylesheet" href="/new/css/total.css?v230829" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript" src="/include/jquery-ui.js"></script>
+<script type="text/javascript" src="/include/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript" src="/include/function.js?t=<?=date('YmdHis')?>"></script>
+<script type="text/javascript" src="/include/jquery.bxslider.min.js"></script>
+<script type="text/javascript">var browser = "<?=$browser?>";</script>
+<script type="text/javascript" src="../chatbot/constants.js" ></script>
+<script type="text/javascript" src="../chatbot/chatbot.js" ></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<meta property="og:title" content="<?=$SiteName?>">
+<meta property="og:image" content="https://www.hrdeedu.com/images/site/header.png?ver=230207" />
+<meta property="og:description" content="스마트한 직무능력향상 <?=$SiteName?>">
+<meta property="og:url" content="https://www.hrdeedu.com">
+<style>
+.float_banner { position: fixed; right: 10px; bottom: 20px; width: 100px; z-index:100; }
+.float_banner > li { display: flex; justify-content: center; margin-top: 13px; }
+
+.float_banner .float_banner2 { margin-left: 15px; width: 70px; height: 70px; z-index:100; background: url(../images/common/floating_top.svg) no-repeat; cursor: pointer; border-radius: 50px; box-shadow: 3px 4px 30px 0px rgb(0 0 0 / 15%);
+    animation-duration: 3s;
+    animation-name: slidein;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
+.nav_wrap {display:flex; justify-content:center; align-items:center; border-top: 1px solid #346edf;border-bottom: 1px solid #346edf; background-color: #346edf; height: 70px;}
+.nav {display:flex; justify-content:center; align-items:center; flex-wrap: nowrap; height: 70px;}
+.nav > li {position: relative; width:25%; height:100%; font-size:1.250rem; font-weight:400;}
+.nav > li > a {display:flex; justify-content:center; align-items:center; padding: 0 0px; height:100%; background-color: #346edf; color: #fff;}
+.nav > li > a span{display:flex; justify-content:center; align-items:center; padding: 0 10px; height:100%; background-color: #346edf;}
+.nav > li > a span:hover {padding: 3px 10px 0 10px; height:100%; background-color: #346edf; border-bottom: 3px solid #236386;}	
+.nav > li > .sub-menu {display: none; position: absolute; width: 100%; top: 70px; left: 0; z-index: 100; border: 1px solid #ddd; box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, .03);}
+.sub-menu > li {position: relative; height:58px; font-size:16px; font-family:300;}
+.sub-menu > li > a {display:flex; align-items:center; width:100%; height:100%; padding: 0 1.5rem; background-color: #fff;}
+.sub-menu > li > a:hover {display:flex; align-items:center; width:100%; height:100%; padding: 0 1.5rem; background:url(../images/common/icon_menu_submenu_arrow.png) no-repeat 90% 50%; background-color: #328fc2; color:#fff;}
+.sub-menu li > .sub-menu {display: none; position: absolute; left: 100%; width: 100%; top: 0; z-index: 100;}
+.nav li.active > .sub-menu {display: block;}
+</style>
+<script>
+$(document).ready(function() {
+    // hide #back-top first
+    $(".float_banner2").hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.float_banner2').fadeIn();
+            } else {
+                $('.float_banner2').fadeOut();
+            }
+        });
+
+        // scroll body to 0px on click
+        $('.float_banner2').click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+	
+	$("._chatbotBtns").on("click",function(){
+		$("#_chatbot").toggle();
+		initChat();
+	});
+});
+</script>
+<script language="JavaScript">
+var _0x5540=['metaKey','event','shiftKey','467012ulvaJz','229983hyzlIQ','97wuigqX','90214ZqbuhT','stopPropagation','keyCode','cancelBubble','765086SkkSuE','preventDefault','ctrlKey','11257IlTibu','onload','addEventListener','platform','1795947LXkqyV','549423qvGApi'];var _0x1400=function(_0xa7dd9f,_0x4099e3){_0xa7dd9f=_0xa7dd9f-0x9b;var _0x554000=_0x5540[_0xa7dd9f];return _0x554000;};var _0x428785=_0x1400;(function(_0x33a4f7,_0x9bee6d){var _0x275a1d=_0x1400;while(!![]){try{var _0x56a62c=-parseInt(_0x275a1d(0xa2))+parseInt(_0x275a1d(0x9d))*-parseInt(_0x275a1d(0xa8))+parseInt(_0x275a1d(0xad))+-parseInt(_0x275a1d(0xa6))+parseInt(_0x275a1d(0xa7))+-parseInt(_0x275a1d(0xa9))+parseInt(_0x275a1d(0xa1));if(_0x56a62c===_0x9bee6d)break;else _0x33a4f7['push'](_0x33a4f7['shift']());}catch(_0x27e007){_0x33a4f7['push'](_0x33a4f7['shift']());}}}(_0x5540,0x90a36),window[_0x428785(0x9e)]=function(){var _0x26e8f7=_0x428785;function _0x383326(_0x1a8d80){var _0x239d3d=_0x1400;_0x1a8d80[_0x239d3d(0xaa)]?_0x1a8d80[_0x239d3d(0xaa)]():window[_0x239d3d(0xa4)]&&(window[_0x239d3d(0xa4)][_0x239d3d(0xac)]=!0x0),_0x1a8d80['preventDefault']();}document[_0x26e8f7(0x9f)]('contextmenu',function(_0x486650){var _0x7d6c4a=_0x26e8f7;_0x486650[_0x7d6c4a(0x9b)]();},!0x1),document['addEventListener']('keydown',function(_0x511cd1){var _0x1d0c94=_0x26e8f7;_0x511cd1['ctrlKey']&&_0x511cd1[_0x1d0c94(0xa5)]&&0x49==_0x511cd1['keyCode']&&_0x383326(_0x511cd1),_0x511cd1[_0x1d0c94(0x9c)]&&_0x511cd1[_0x1d0c94(0xa5)]&&0x43==_0x511cd1[_0x1d0c94(0xab)]&&_0x383326(_0x511cd1),_0x511cd1[_0x1d0c94(0x9c)]&&_0x511cd1['shiftKey']&&0x4a==_0x511cd1['keyCode']&&_0x383326(_0x511cd1),0x53==_0x511cd1['keyCode']&&(navigator[_0x1d0c94(0xa0)]['match']('Mac')?_0x511cd1[_0x1d0c94(0xa3)]:_0x511cd1[_0x1d0c94(0x9c)])&&_0x383326(_0x511cd1),_0x511cd1[_0x1d0c94(0x9c)]&&0x55==_0x511cd1['keyCode']&&_0x383326(_0x511cd1),0x7b==event[_0x1d0c94(0xab)]&&_0x383326(_0x511cd1);},!0x1);});
+</script>
+</head> 
+<body>
+<form name="listScriptForm" method="GET" action="<?=$list_page?>">
+<input type="hidden" name="col" value="<?=$col?>">
+<input type="hidden" name="sw" value="<?=$sw?>">
+<input type="hidden" name="pg" value="<?=$pg?>">
+<input type="hidden" name="orderby" value="<?=$orderby?>">
+<input type="hidden" name="FaqCate" value="<?=$FaqCate?>">
+<input type="hidden" name="ParentCategory" value="<?=$ParentCategory?>">
+<input type="hidden" name="Category" value="<?=$Category?>">
+<input type="hidden" name="EduCate" value="<?=$EduCate?>">
+</form>
+<form name="ReadScriptForm" method="GET" action="<?=$read_page?>">
+<input type="hidden" name="idx">
+<input type="hidden" name="col" value="<?=$col?>">
+<input type="hidden" name="sw" value="<?=$sw?>">
+<input type="hidden" name="pg" value="<?=$pg?>">
+<input type="hidden" name="orderby" value="<?=$orderby?>">
+<input type="hidden" name="FaqCate" value="<?=$FaqCate?>">
+<input type="hidden" name="ParentCategory" value="<?=$ParentCategory?>">
+<input type="hidden" name="Category" value="<?=$Category?>">
+<input type="hidden" name="EduCate" value="<?=$EduCate?>">
+</form>
+
+    <!--플로팅배너-->
+    <ul class="float_banner">
+        <li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/new/images/common/floating_kakao.png"></a></li>
+        <!--<li><a href="https://pf.kakao.com/_kEcWxj/chat" target="_blank"><img src="/images/common/floating_chatbot.png"></a></li>-->
+        <li><img src="../chatbot/bot-mini.gif" class="_chatbotBtns" style="width:70px;" /></li>
+        <li class="float_banner2"></li>
+    </ul>
+    <!--플로팅배너-->
+
+    <div id="_chatbot" style="position:fixed;right:10px;top:60px;z-index:999;display:none">
+        <link rel="stylesheet" href="../chatbot/style.css" />
+        <link rel="stylesheet" href="../chatbot/jquery-ui.css">
+
+        <div id="container" class="container">
+            <div id="chat" class="chat">
+                <div id="close_chatbot" style="position:absolute;right:12px;top:52px;">
+                    <input type="button" class='chat_close' style="margin:1px;padding:1px;height:initial;" value=" x " onclick='$("#_chatbot").toggle();initChat()' />
+                </div>
+                <div id="messages" class="messages"></div>
+                <input id="input" type="text" placeholder="질문을 입력해주세요..." autocomplete="off" autofocus="true" />
+                <script>
+                </script>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 상단배너 -->
+    <div class="top_banner" style="display:none">
+        <!-- banner01-->
+        <div style="background-color:#236386;">
+            <div class="wrap" style="display:flex; justify-content:center; align-items:center; flex-wrap: wrap; color:#fff; font-size:1.250rem;">
+                <div class="top_banner_left" ><img src="/new/images/topbanner/browser_01.png" usemap="#browserdown-map"></div>
+                <map name="browserdown-map">
+                    <area target="_blank" alt="Edge 다운로드" title="Edge 다운로드" href="https://www.microsoft.com/ko-kr/edge/download?form=MY01BV" coords="631,0,726,70" shape="rect">
+                    <area target="_blank" alt="크롬 다운로드" title="크롬 다운로드" href="https://www.google.com/chrome/" coords="736,1,826,69" shape="rect">
+                    <area target="_blank" alt="네이버웨일 다운로드" title="네이버웨일 다운로드" href="https://whale.naver.com/banner/details/translate/?=main&amp;wpid=RydDy7" coords="837,0,966,70" shape="rect">
+                </map>
+                <div class="top_banner_right">
+                    <input type="checkbox" name="top_check" id="top_check"><label for="top_check">오늘 하루 열지 않음</label>
+                    <div class="btn_xclose" onclick="javascript:TopBannerCloseLayerDay('top_banner');"></div>
+                </div>
+           </div>
+        </div>
+        <!-- banner01-->
+    </div>
+    <!-- 상단배너-->
+
+    <div class="header">
+        <div class="wrap header_wrap">
+            <div class="logo"><a href="/new/main/main.html"><img src="/new/images/common/logo.png"></a></div>
+            <div class="topmenu">
+                <? if(empty($_SESSION['LoginMemberID'])) { ?>
+                <span style="margin-right:10px;"><a href="../member/login.html"><span>로그인</span></a></span>
+                <? } else { ?>
+                <span style="margin-right:10px;"><a href="../member/logout.php"><span>로그아웃</span></a></span>
+                <? } ?>
+                <div class="topmenu_wrap">
+                    <span class="point"><a href="../mypage/lecture.html">나의학습실</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav_wrap">
+        <div class="wrap">
+        
+            <div class="ve-menu">
+                <ul class="ve-menu-pc">
+                    <li><a href="/new/group/introduce.html">교육원소개</a>
+                        <ul>
+                            <li><a href="/new/group/introduce.html">교육원 소개</a></li>
+                            <li><a href="/new/group/vision.html">비전</a></li>
+                            <li><a href="/new/group/history.html">연혁</a></li>
+                            <li><a href="/new/group/organogram.html">조직도</a></li>
+                            <li><a href="/new/group/location.html">오시는 길</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/new/educps/course.html?PCategory=<?=$Menu01ParentCategory?>">법정의무교육</a>
+                        <ul>
+                        <?
+                        $SQL = "SELECT * FROM CourseCategory WHERE Deep=2 AND ParentCategory=$Menu01ParentCategory AND Del='N' ORDER BY OrderByNum ASC, idx ASC";
+                        $QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY))
+                        {
+                            while($ROW = mysqli_fetch_array($QUERY))
+                            {
+                        ?>
+                            <li><a href="/new/educps/course.html?PCategory=<?=$Menu01ParentCategory?>&Category=<?=$ROW['idx']?>"><?=$ROW['CategoryName']?></a></li>
+                        <?
+                            }
+                        }
+                        ?>
+                        </ul>
+                    </li>
+                    <li><a href="/new/educps/course.html?PCategory=<?=$Menu02ParentCategory?>">직무능력향상교육</a>
+                        <ul>
+                        <?
+                        $SQL = "SELECT * FROM CourseCategory WHERE Deep=2 AND ParentCategory=$Menu02ParentCategory AND Del='N' ORDER BY OrderByNum ASC, idx ASC";
+                        $QUERY = mysqli_query($connect, $SQL);
+                        if($QUERY && mysqli_num_rows($QUERY))
+                        {
+                            while($ROW = mysqli_fetch_array($QUERY))
+                            {
+                        ?>
+                            <li><a href="/new/educps/course.html?PCategory=<?=$Menu02ParentCategory?>&Category=<?=$ROW['idx']?>"><?=$ROW['CategoryName']?></a></li>
+                        <?
+                            }
+                        }
+                        ?>
+                        </ul>
+                    </li>
+                    <li><a href="/new/support/notice.html">학습지원센터</a>
+                        <ul>
+                            <li><a href="/new/support/notice.html">공지사항</a></li>
+                            <li><a href="/new/support/faq.html">자주묻는질문</a></li>
+                            <li><a href="/new/support/ask.html">1:1문의</a></li>
+                            <li><a href="/new/support/remote.html">PC원격지원</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/new/reference/edudata.html">학습자료실</a>
+                        <ul>
+                            <li><a href="/new/reference/edudata.html?EduCate=A">경영·사무</a></li>
+                            <li><a href="/new/reference/edudata.html?EduCate=B">보건·의료</a></li>
+                            <li><a href="/new/reference/edudata.html?EduCate=C">보육</a></li>
+                            <li><a href="/new/reference/edudata.html?EduCate=D">4차 산업</a></li>
+                            <li><a href="/new/reference/edudata.html?EduCate=E">법정의무·기타</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        
+        </div>
+    </div>
+    
+    <script src="../js/menu.js"></script>
+    <script>
+    $(function() {
+        $('.ve-menu').menu({
+            itemWidth: 0,
+            itemMargin: 0,
+            animate: 'slide'
+        });
+    })
+    </script>    
+    <!-- nav -->

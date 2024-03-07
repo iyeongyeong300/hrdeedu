@@ -1,0 +1,71 @@
+<? include "../include/member_header_include.html"; ?> 
+<?
+//로그인 여부 체크
+include $_SERVER['DOCUMENT_ROOT'] . "/include/login_not_check.php";
+?>
+<div class="stitle">로그인</div>
+<div class="line30"></div>
+       
+        <div class="memberinfo_wrap">
+           
+            <form name="LoginForm" target="ScriptFrame" autocomplete="off">
+            <input type="hidden" name="MemberType">
+            <div class="Requiredinfo_area">
+                <div class="Requiredinfo_row">
+                    <div class="title">아이디</div>
+                    <div class="content">
+                        <input type="txt" name="ID" id="ID1" class="inp_txt" title="아이디" placeholder="아이디를 입력해주세요." value="<?if (isset($_COOKIE["MemberSavedID"])) { echo $_COOKIE["MemberSavedID"];}?>">
+                    </div>
+                </div>             
+                <div class="Requiredinfo_row">
+                    <div class="title">비밀번호</div>
+                    <div class="content">
+                        <input type="password" name="Pwd" id="Pwd1" class="inp_txt" title="비밀번호" placeholder="비밀번호를 입력해주세요.">
+                    </div>
+                </div>
+                <ul class="chkarea mt20 tc">
+                    <li class="ml10"><input type="radio" name="MemberType1" id="MemberType1" value="A" checked><label for="MemberType1">기업근로자 회원</label></li>
+                    <li><input type="radio" name="MemberType1" id="MemberType2" value="B"><label for="MemberType2">국민내일배움카드</label></li>
+                </ul>
+                <div class="speechbubble">“기업 교육 학습자는 반드시 기업 근로자 회원에 체크해 주세요”</div>  
+            </div>
+            <div class="btnarea">
+                <span class="w100p"><button type="button" class="member_btn01" onclick="LoginSubmit()">로그인</button></span>
+            </div>
+            </form>
+
+            <div class="box_bottom_nav_wrap">
+                <ul class="box_bottom_nav">
+                    <li><a href="../member/terms.html">회원가입</a></li>
+                    <li class="gap">|</li>
+                    <li><a href="../member/idpassfind.html">아이디/비밀번호 찾기</a></li>
+                    <!--<li class="gap">|</li>
+					<li><a href="../pop/pop_easylnquiry.html" target="_blank">간편문의</a></li>-->
+                </ul>
+            </div>
+        </div>
+
+<? include "../include/member_footer_include.html"; ?> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

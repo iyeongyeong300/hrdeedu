@@ -1,0 +1,281 @@
+<?
+include $_SERVER['DOCUMENT_ROOT'] . "/include/include_function.php"; //DB연결 및 각종 함수 정의
+
+$PCategory = Replace_Check_XSS2($PCategory);
+if (!$PCategory) $PCategory = $Menu01ParentCategory;
+$Category = Replace_Check_XSS2($Category);
+$idx = Replace_Check_XSS2($idx);
+
+$NowDate = date("Y-m-d");
+
+$where = array();
+
+$where[] = "Del='N'";
+$where[] = "UseYN='Y'";
+$where[] = "PackageYN='N'";
+$where[] = "Category1=$PCategory";
+
+if($Category) {
+$where[] = "Category2=$Category";
+}
+
+$where[] = "idx=$idx";
+
+$where = implode(" AND ",$where);
+if($where) $where = "WHERE $where";
+
+$Sql = "SELECT * FROM Course $where";
+$Result = mysqli_query($connect, $Sql);
+$Row = mysqli_fetch_array($Result);
+if($Row) {
+    $ctype = $Row['ctype']; //A 사업주과정, B 내일배움카드
+    $ClassGrade = $Row['ClassGrade']; //등급
+    $LectureCode = $Row['LectureCode']; //과정코드
+    $UseYN = $Row['UseYN']; //사이트 노출
+    $PassCode = $Row['PassCode']; //심사코드
+    $HrdCode = $Row['HrdCode']; //HRD-NET 과정코드
+    $Category1 = $Row['Category1']; //과정분류 대분류
+    $Category2 = $Row['Category2']; //과정분류 소분류
+    $ServiceType = $Row['ServiceType']; //서비스 구분
+    $ContentsName = html_quote($Row['ContentsName']); //과정명
+    $CompleteTime = $Row['CompleteTime']; //진도시간 기준
+    $ProgressCheck = $Row['ProgressCheck']; //진도체크방식
+    $Chapter = $Row['Chapter']; //차시수
+    $ContentsTime = $Row['ContentsTime']; //교육시간
+    $Price = $Row['Price']; //교육비용 일반
+    $Price01View = $Row['Price01View']; //교육비용 우선지원 
+    $Price02View = $Row['Price02View']; //교육비용 대규모 1000인 미만 
+    $Price03View = $Row['Price03View']; //교육비용 대규모 1000인 이상 
+    $Price01 = $Row['Price01']; //자부담금 교육비용 우선지원 
+    $Price02 = $Row['Price02']; //자부담금 교육비용 대규모 1000인 미만 
+    $Price03 = $Row['Price03']; //자부담금 교육비용 대규모 1000인 이상 
+    $Professor = $Row['Professor']; //내용전문가 
+    $Limited = $Row['Limited']; //학급정원
+    $ContentsPeriod = substr($Row['ContentsPeriod'],0,10); //컨텐츠 유효기간
+    $ContentsAccredit = substr($Row['ContentsAccredit'],0,10); //인정만료일 시작일
+    $ContentsExpire = substr($Row['ContentsExpire'],0,10); //인정만료일 종료일
+    $Cp = html_quote($Row['Cp']); //cp사
+    $Commission = $Row['Commission']; //cp 수수료
+    $Mobile = $Row['Mobile']; //모바일 지원
+    $BookPrice = $Row['BookPrice']; //교재비
+    $BookIntro = html_quote($Row['BookIntro']); //참고도서설명
+    $attachFile = html_quote($Row['attachFile']); //학습자료
+    $PreviewImage = html_quote($Row['PreviewImage']); //과정 이미지
+    $BookImage = html_quote($Row['BookImage']); //교재 이미지
+    $Mid01EA = $Row['Mid01EA']; //중간평가 객관식 문항수
+    $Mid01Score = $Row['Mid01Score']; //중간평가 객관식 배점
+    $Mid02EA = $Row['Mid02EA']; //중간평가 주관식 문항수
+    $Mid02Score = $Row['Mid02Score']; //중간평가 주관식 배점
+    $Test01EA = $Row['Test01EA']; //최종평가 객관식 문항수
+    $Test01Score = $Row['Test01Score']; //최종평가 객관식 배점
+    $Test02EA = $Row['Test02EA']; //최종평가 주관식 문항수
+    $Test02Score = $Row['Test02Score']; //최종평가 주관식 배점
+    $ReportEA = $Row['ReportEA']; //과제 문항수
+    $ReportScore = $Row['ReportScore']; //과제 배점
+    $TestTime = $Row['TestTime']; //시험제한시간
+    $MidRate = $Row['MidRate']; //반영비율 중간평가 
+    $TestRate = $Row['TestRate']; //반영비율 최종평가 
+    $ReportRate = $Row['ReportRate']; //반영비율 과제
+    $PassProgress = $Row['PassProgress']; //진도율  
+    $TotalPassMid = $Row['TotalPassMid']; //중간평가 : 총점
+    $TotalPassTest = $Row['TotalPassTest']; //최종평가 : 총점
+    $PassTest = $Row['PassTest']; //최종평가 : 득점
+    $TotalPassReport = $Row['TotalPassReport']; //과제 : 총점
+    $PassReport = $Row['PassReport']; //과제 : 득점
+    $PassScore = $Row['PassScore']; //반영비율을 적용한 총점
+    $Intro = nl2br($Row['Intro']); //과정소개
+    $EduTarget = nl2br($Row['EduTarget']); //교육대상
+    $EduGoal = nl2br($Row['EduGoal']); //교육목표
+    $EduGoalArr = explode("<br />",$EduGoal);
+    $Hit = $Row['Hit']; //인기 강의
+}
+
+if($PreviewImage) {
+    $PreviewImageView = "/upload/Course/".$PreviewImage;
+}else{
+    $PreviewImageView = "/images/no_img.jpg";
+}
+
+if($IE8Compat=="Y") {
+    //$PreviewFun = "CoursePreviewPopup";
+    $PreviewFun = "CoursePreview";
+}else{
+    $PreviewFun = "CoursePreview";
+}
+
+if($ctype=="A") {
+    $CompanyScaleTitle01 = "우선지원 기업";
+    $CompanyScaleTitle02 = "대규모(1,000인 미만)";
+    $CompanyScaleTitle03 = "대규모(10,000인 이상)";
+}
+
+if($ctype=="B") {
+    $CompanyScaleTitle01 = "일반훈련생";
+    $CompanyScaleTitle02 = "취업성공패키지";
+    $CompanyScaleTitle03 = "근로장려금";
+}
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title><?=$ContentsName?> 학습내용 상세보기</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../css/total.css" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="../js/ie6.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/include/jquery-ui.js"></script>
+<script type="text/javascript" src="/include/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript" src="/include/function.js?t=<?=date('YmdHis')?>"></script>
+<script type="text/javascript" src="/include/jquery.bxslider.min.js"></script>
+<script type="text/javascript">
+<!--
+function LectureRequestSubmitOk2() {
+
+    var checked_value = $(':radio[name="LectureDate"]:checked').val();
+    var checked_length = $(':radio[name="LectureDate"]').length;
+
+    if(checked_length==0) {
+        alert("등록된 교육기간 존재하지 않아 학습신청을 할수 없습니다.");
+        return;
+    }
+
+    if(checked_value==undefined) {
+        alert("교육기간을 선택하세요.");
+        return;
+    }
+    
+
+    Yes = confirm("신청하시겠습니까?");
+    if(Yes==true) {
+        RequestForm2.submit();
+    }
+
+}
+
+function InfoDesc(i) {
+
+    $("a[id='InfoLink']").removeClass('show');
+    $("div[id='Info']").hide();
+
+
+    $("a[id='InfoLink']").eq(i).addClass('show');
+    $("div[id='Info']").eq(i).show();
+
+}
+//-->
+</script>
+</head>
+<body>
+   <!--레이어팝업 사이즈 680*415-->
+    <div class="poplayer_area">
+        <div class="title">학습내용 상세보기<!--<button class="close" onclick="javascript:self.close();"></button>--></div>
+        <div class="content">
+
+            <style>
+                * {
+                    border: 0px solid #000;
+                }
+            </style>
+            <ul class="pop_edu_detail_header">
+                <li class="left" style="background-image: url(<?=$PreviewImageView?>)"></li>
+                <li class="right">
+                    <div class="title"><?=$ContentsName?></div>
+                    <div class="icon">
+                        <?if($ServiceType=="1") {?><span class="btn_02 small_violet ml7" style="margin-right:8px">사업주환급</span><?}?>
+                        <span class="btn_02 small_org">PC</span>
+                        <?if($Mobile=="Y") {?><span class="btn_02 small_violet ml7">모바일</span><?}?>
+                    </div>
+                    <div class="text"><span class="font_red mr20">교육대상</span><div style="margin:-20px 0 0 85px"><?=$EduTarget?></div></div>
+                    <div class="text"><span class="font_red mr20">교육시간</span><?=$Chapter?>차시<em> / </em><?=$ContentsTime?>시간</div>
+                    <div class="btn">
+                        <!--
+                        <button type="button" onclick="window.open('../pop/pop_play.html')"  class="btn_01g"><span style="padding-left:30px; background: url(../images/common/video.svg) no-repeat; background-size: contain;">과정 맛보기</span></button>
+                        <button type="button" onclick="window.open('../pop/pop_easylnquiry.html')" class="btn_01g ml10"><span style="padding-left:30px; background: url(../images/common/inquire.svg) no-repeat; background-size: contain;">간편문의
+                        </span></button>
+                        -->
+                        <button type="button" onclick="Javascript:<?=$PreviewFun?>('<?=$LectureCode?>');"  class="btn_01g"><span style="padding-left:30px; background: url(../images/common/video.svg) no-repeat; background-size: contain;">과정 맛보기</span></button>
+                        <button type="button" onclick="Javascript:LectureRequest('<?=$LectureCode?>','<?=$Price?>');"  class="btn_01g" style="margin-left:10px; color:#0D7E93;"><span style="padding-left:30px; background: url(../images/common/checkbox.svg) no-repeat; background-size: contain;">학습신청</span></button>
+                        <button type="button" onclick="Javascript:SimpleAsk();" class="btn_01g ml10"><span style="padding-left:30px; background: url(../images/common/inquire.svg) no-repeat; background-size: contain;">간편문의
+                        </span></button>
+                        
+                    </div>
+                </li>
+            </ul>
+
+            <table width="100%" class="tbl_typeB mt20" border="0" cellspacing="0" summary="회원정보">
+                <caption>회원정보</caption>
+                <colgroup>
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th rowspan="2" scope="row">수료기준</th>
+                        <td colspan="3" class="on">진도율</td>
+                        <td colspan="3" class="on">평가</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><?=$PassProgress?>%이상</td>
+                        <td colspan="3"><?=$PassScore?>점 이상</td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" scope="row" class="on">평가</th>
+                        <td colspan="2" class="on">진행단계평가</td>
+                        <td colspan="2" class="on">최종평가</td>
+                        <td colspan="2" class="on">과제형평가</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><?if($TotalPassMid>0) {?>총 <?=$TotalPassMid?>점 / <?=$MidRate?>% 반영<?}else{?>중간평가 없음<?}?></td>
+                        <td colspan="2"><?if($TotalPassTest>0) {?>총 <?=$TotalPassTest?>점 / <?=$TestRate?>% 반영<?}else{?>최종평가 없음<?}?></td>
+                        <td colspan="2"><?if($TotalPassReport>0) {?>총 <?=$TotalPassReport?>점 / <?=$ReportRate?>% 반영<?}else{?>과제 없음<?}?></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" scope="row">교육비</th>
+                        <td colspan="2" class="on">총비용</td>
+                        <td class="on">환급:<?=$CompanyScaleTitle01?></td>
+                        <td class="on">환급:<?=$CompanyScaleTitle02?></td>
+                        <td colspan="2" class="on">환급:<?=$CompanyScaleTitle03?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><?=number_format($Price,0)?></span> 원</td>
+                        <td><?=number_format($Price01View,0)?></span> 원</td>
+                        <td><?=number_format($Price02View,0)?></span> 원</td>
+                        <td colspan="2"><?=number_format($Price03View,0)?></span> 원</td>
+                    </tr>
+                    <td colspan="7" scope="row"><img src="../images/common/studystep.png" width="656" height="101" alt="" /></td>
+                    <tr>
+                        <th rowspan="<?=count($EduGoalArr)?>" scope="row">학습목표</th>
+                        <td colspan="6" style="text-align:left; padding-left:20px;"><?=$EduGoalArr[0]?></td>
+                    </tr>
+                    <?
+                    for ($z=1; $z < count($EduGoalArr); $z++) {
+                    ?>
+                    <tr>
+                        <td colspan="6" style="text-align:left; padding-left:20px;"><?=$EduGoalArr[$z]?></td>
+                    </tr>
+                    <?
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+<div id="SysBg_White" style="position:absolute; left:0; top:0; z-index:10; width: 100%; height: 100%; background-color: #FFFFFF;display:none;"></div>
+<div id="SysBg_Black" style="position:absolute; left:0; top:0; z-index:10; width: 100%; height: 100%; background-color: #000000;display:none;"></div>
+<div id="Roading" style="display:none;z-index:100"><BR /><BR /><BR /><BR /><img src="/images/loader.gif" alt="로딩중" /></div>
+<div id="DataResult" style="display:none;z-index:10000"></div>
+<iframe name="ScriptFrame" border="0" frameborder="0" width="0" height="0" title="데이터 처리를 위한 프레임" style="display:none"></iframe>
+</html>

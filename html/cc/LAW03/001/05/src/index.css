@@ -1,0 +1,132 @@
+
+body{
+    margin : 0px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#_skipBtn{
+    background: url('./img/btn_skip.png') no-repeat;
+    background-size: 100% 100%;
+    width: 256px;
+    height: 86px;
+    left: 920px;
+    top: 540px;
+    position: absolute;
+    z-index: 3;
+    display: none;
+}
+#_skipBtn:hover{
+    background: url('./img/btn_skip_over.png') no-repeat;
+    background-size: 100% 100%;
+    width: 256px;
+    height: 86px;
+    left: 920px;
+    top: 540px;
+    position: absolute;
+    z-index: 3;
+}
+
+
+#_printBtn{
+    position: absolute;
+    top: 545px;
+    left: 820px;
+    width: 200px;
+    height: 70px;
+    background: url('./img/btn_lec_pint.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: 5;
+    display: none; 
+}
+#_printBtn:hover{
+    position: absolute;
+    top: 545px;
+    left: 820px;
+    width: 200px;
+    height: 70px;
+    background: url('./img/btn_lec_pint_over.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: 5;
+    display: none; 
+}
+
+#_downloadPdfBtn{
+    position: absolute;
+    top: 535px;
+    left: 766px;
+    width: 200px;
+    height: 70px;
+    background: url('./img/btn_lec_download.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: 5;
+    display: none; 
+}
+#_downloadPdfBtn:hover{
+    position: absolute;
+    top: 545px;
+    left: 766px;
+    width: 200px;
+    height: 70px;
+    background: url('./img/btn_lec_download_over.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: 5;
+    display: none; 
+}
+
+#_downloadHwpBtn{
+    position: absolute;
+    top: 535px;
+    left: 963px;
+    width: 200px;
+    height: 70px;
+    background: url('./img/btn_lec_03download.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: 5;
+    display: none; 
+}
+#_downloadHwpBtn:hover{
+    position: absolute;
+    top: 545px;
+    left: 963px;
+    width: 200px;
+    height: 70px;
+    background: url('./img/btn_lec_02_download.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: 5;
+    display: none; 
+}
+#_nextBalloon{
+    background: url('./img/balloon_next.png') no-repeat;
+    background-size: 100% 100%;
+    width: 115px;
+    height: 86px;
+    left: 892px;
+    top: 590px;
+    position: absolute;
+    display: none;
+    z-index: 7;
+}
+/* 여기 수정 하시면 되요 */
+#_nextPlay{
+    background: url('./img/balloon_next.png') no-repeat;
+    background-size: 100% 100%;
+    width: 115px;
+    height: 86px;
+    left: 100px;
+    top: 590px;
+    position: absolute;
+    display: none;
+    z-index: 7;
+}
+#_lastBalloon{
+    background: url('./img/balloon_last.png') no-repeat;
+    background-size: 100% 100%;
+    width: 115px;
+    height: 86px;
+    left: 892px;
+    top: 590px;
+    position: absolute;
+    display: none;
+    z-index: 7;
+}

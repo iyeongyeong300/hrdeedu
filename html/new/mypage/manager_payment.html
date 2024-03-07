@@ -1,0 +1,250 @@
+<? include "../include/header.html"; ?>
+<?
+include "../include/login_check.php";
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#SearchYear").change(function(){
+			$("#changeList").load(location.href+" #changeList",{SearchYear: $('#SearchYear').val()});
+		});
+	});
+</script>
+<div class="wrap">
+    <!-- wrap -->
+    <? include "../include/subtitle_mypage.html"; ?>
+	<?
+	if($LoginEduManager!="Y") {
+	?>
+	<script type="text/javascript">
+	<!--
+		location.href="../main/main.html";
+	//-->
+	</script>
+	<?
+	exit;
+	}
+	?>
+	
+    <div class="navigation_wrap">
+        <div class="navigation">
+            <span class="home_icon"></span><span>></span>나의학습실<span>></span>교육담당자<span>></span>자부담금 관리
+        </div>
+    </div>
+    <div class="tabList_area">
+        <ul class="tabList">
+            <li>
+                <a href="../mypage/lecture.html" class="tab_btn">수강관리</a>
+            </li>
+            <li>
+                <a href="../mypage/appaylecture.html" class="tab_btn">수강신청/결제관리</a>
+            </li>
+            <li>
+                <a href="../mypage/datapick.html" class="tab_btn">자료/상담관리</a>
+            </li>  
+            <?if($LoginEduManager=="Y") {?>
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn on">교육담당자</a>
+            </li>         
+            <? } ?>
+            <li>
+                <a href="../mypage/memberinfo.html" class="tab_btn">회원정보관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabList_area2">
+        <ul class="tabList2">
+            <li>
+                <a href="../mypage/manager_trainee.html" class="tab_btn">자사수강생 리스트</a>
+            </li>
+            <li>
+                <a href="../mypage/manager_payment.html" class="tab_btn on">자부담금 관리</a>
+            </li>
+            <li>
+                <a href="../mypage/manager_complete.html" class="tab_btn">수료 관리</a>
+            </li>                        
+        </ul>
+    </div>
+    <ul class="studentlst">
+    	<select name="SearchYear" id="SearchYear" style="padding: 1px 5px;padding-right: 25px;position: relative;background-size: auto 30px;height:50px;width:150px; margin-top:10px;border: 2px solid #4CA4D4;">
+			<option value="">년도 검색</option>
+			<?for($i=2018;$i<=date("Y");$i++) { ?>
+			<option value="<?=$i?>"><?=$i?>년</option>
+			<?}?>
+       	</select>
+		<!-- List -->
+        <li id="changeList">
+			<!-- info list -->
+			 <?
+				$Sql = "SELECT *, (SELECT CompanyName FROM Company WHERE CompanyCode=Member.CompanyCode LIMIT 0,1) AS CompanyName FROM Member WHERE ID='$LoginMemberID' AND MemberOut='N' AND UseYN='Y'";
+				$Result = mysqli_query($connect, $Sql);
+				$Row = mysqli_fetch_array($Result);
+
+				if($Row) {
+					$CompanyCode = $Row['CompanyCode']; //사업자 번호
+					$CompanyName = $Row['CompanyName']; //소속기업명
+				}
+				$i = 1;
+
+				if($SearchYear){
+					$where = " WHERE a.CompanyCode='$CompanyCode' AND a.ServiceType IN (1,3,5,9) AND YEAR(a.LectureStart)= '$SearchYear' ";
+    			}else{			    
+        			$where = " WHERE a.CompanyCode='$CompanyCode' AND a.ServiceType IN (1,3,5,9) ";
+    			}
+
+				$SQL = "SELECT 	DISTINCT a.LectureStart, a.LectureEnd, 
+								(SELECT DISTINCT(LectureCode) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode ORDER BY ServiceType ASC LIMIT 0,1) AS LectureCode, 
+								(SELECT COUNT(DISTINCT(LectureCode)) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType IN (1,3,5,9)) AS CourseCount 
+						FROM Study AS a
+						LEFT OUTER JOIN Company AS b ON a.CompanyCode=b.CompanyCode 
+						$where
+						ORDER BY a.LectureStart ASC, a.LectureEnd ASC ";
+				$QUERY = mysqli_query($connect, $SQL);
+				if($QUERY && mysqli_num_rows($QUERY))
+				{
+					while($ROW = mysqli_fetch_array($QUERY))
+					{
+						extract($ROW);
+
+						$Sql = "SELECT ContentsName FROM Course WHERE LectureCode='$LectureCode'";
+						$Result = mysqli_query($connect, $Sql);
+						$Row = mysqli_fetch_array($Result);
+
+						if($Row) {
+							$ContentsName = $Row['ContentsName'];
+						}
+
+						if($CourseCount>1) {
+							$ContentsName = $ContentsName." 등 ".$CourseCount."개 과정";
+						}else{
+							$ContentsName = $ContentsName;
+						}
+				?>
+			<ul class="classdate">
+                <li class="left"><?=$LectureStart?> ~ <?=$LectureEnd?>  개강</li>
+            </ul>
+			<?
+				$SQL2 = "SELECT DISTINCT(a.CompanyCode), b.CompanyName, c.BankPrice, c.CardPrice, c.PayStatus, c.PaymentRemark, c.PayMethod, c.MOID, c.PayDate, c.CancelDate,c.idx AS pay_idx,  
+				(SELECT SUM(Price) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType IN (1,3,5,9)) AS TotalPrice, 
+				(SELECT SUM(rPrice) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType IN (1,3,5,9)) AS TotalRPrice, 
+				(SELECT SUM(Price) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType=1) AS TotalPrice2, 
+				(SELECT SUM(rPrice) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType=1) AS TotalRPrice2, 
+				(SELECT SUM(rPrice2) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType IN (1,3,5,9)) AS rPrice2Sum, 
+				(SELECT COUNT(*) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType=1) AS StudyCount, 
+				(SELECT COUNT(*) FROM Study WHERE LectureStart=a.LectureStart AND LectureEnd=a.LectureEnd AND CompanyCode=a.CompanyCode AND ServiceType IN (3,5,9)) AS StudyBeCount 
+				FROM  Study AS a LEFT OUTER JOIN Company AS b ON a.CompanyCode=b.CompanyCode LEFT OUTER JOIN PaymentSheet AS c ON a.CompanyCode=c.CompanyCode AND a.LectureStart=c.LectureStart AND a.LectureEnd=c.LectureEnd WHERE b.CompanyCode='$CompanyCode' AND a.ServiceType IN (1,3,5,9) AND a.LectureStart='$LectureStart' AND a.LectureEnd='$LectureEnd' ORDER BY b.CompanyName ASC";
+				//echo $SQL2."<br><br>";
+				$QUERY2 = mysqli_query($connect, $SQL2);
+				if($QUERY2 && mysqli_num_rows($QUERY2))
+				{
+					while($ROW2 = mysqli_fetch_array($QUERY2))
+					{
+
+						$TotalPrice = $ROW2['TotalPrice']; //전체 교육비
+						$TotalRPrice = $ROW2['TotalRPrice']; //전체 환급액
+						$TotalPrice2 = $ROW2['TotalPrice2']; //환급과정 교육비
+						$TotalRPrice2 = $ROW2['TotalRPrice2']; //환급과정 환급액
+						$rPrice2Sum = $ROW2['rPrice2Sum']; //자부담금
+						$CompanyCode = $ROW2['CompanyCode'];
+						$StudyCount = $ROW2['StudyCount'];
+						$StudyBeCount = $ROW2['StudyBeCount'];
+						$BankPrice = $ROW2['BankPrice'];
+						$CardPrice = $ROW2['CardPrice'];
+						$PayStatus = $ROW2['PayStatus'];
+						$PaymentRemark = $ROW2['PaymentRemark'];
+						$PayMethod = $ROW2['PayMethod'];
+						$MOID = $ROW2['MOID'];
+						$PayDate = $ROW2['PayDate'];
+						$CancelDate = $ROW2['CancelDate'];
+						$pay_idx = $ROW2['pay_idx'];
+
+						if(!$BankPrice) {
+							$BankPrice = 0;
+						}else{
+							$BankPrice = $BankPrice;
+						}
+						if(!$CardPrice) {
+							$CardPrice = $TotalPrice2;
+						}else{
+							$CardPrice = $CardPrice;
+						}
+
+				?>
+            <table width="100%" class="tbl_typeD mt15" border="0" cellspacing="0" summary="">
+                <caption></caption>
+                <colgroup>
+                  <col width=""><col width="15%"><col width="15%"><col width="18%">
+                </colgroup>
+                <tbody>
+	                <tr>
+                        <td rowspan="2">
+                            <ul class="baseinfo">
+							   <li class="subname"><?=$Category1Name?></li>
+                               <li class="name"><?=$ContentsName?></li>
+                               <li class="refund">환급 : <span><?=$StudyCount?>명</span><span class="pl10 pr10">I</span>비환급 : <span><?=$StudyBeCount?>명</span></li>
+                            </ul>
+                        </td>
+                        <td>
+                          <div>교육비</div>
+                          <div><?=number_format($TotalPrice,0)?>원</div>
+                        </td>
+                        <td>
+                          <div>통장입금액</div>
+                          <div><?=number_format($BankPrice,0)?>원</div>
+                        </td>                        
+                        <td>
+                             <div>상태</div>
+                        </td>
+                    </tr>
+	                <tr>
+                        <td>
+                            <div>자부담금</div>
+                            <div><span class="font_red"><?=number_format($rPrice2Sum,0)?>원</span></div>
+                        </td>
+                        <td>
+                            <div>결제요청금액</div>
+                            <div><?=number_format($CardPrice,0)?>원</div>
+                        </td>  
+						<td>
+                             <div class="font_red">
+								<? if($PayStatus=='R') { //결제요청시 ?>
+								<p>결제요청중</p>
+								<? } ?>
+								<? if($PayStatus=='Y') { //결제완료시 ?>
+								<p>결제완료</p>
+								<? } ?>
+								<? if($PayStatus!='R' && $PayStatus!='Y') { //초기상태 ?>
+								<p>-</p>
+								<? } ?>
+                             </div>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			<!-- btn -->
+            <div class="ar mt10 pr20">
+			<? if($PayStatus=='R') { //결제요청시 ?>
+			<button type="button" class="btn_01" onclick="PayMentOpen_LG('<?=$pay_idx?>','<?=$CompanyCode?>');">결제하기</button>
+			<? } ?>
+			<? if($PayStatus=='Y') { //결제완료시 ?>
+				<button type="button" class="btn_01" onclick="PayResult('<?=$pay_idx?>','<?=$CompanyCode?>');">결제 확인서</button>
+			<? } ?>
+			</div>
+			<!-- btn // -->
+					<?
+						$k++;
+						}
+					}
+					$i++;
+				}
+			}else{
+			?>
+            <ul>수강 내역이 없습니다.</ul>
+			<? } ?>
+        <!-- info list // -->
+        </li>
+        <!-- List //-->           
+    </ul>
+
+</div><!-- wrap -->
+<? include "../include/footer.html"; ?>

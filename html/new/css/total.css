@@ -1,0 +1,97 @@
+@charter set "utf-8";
+
+@import url("base.css?v230829");
+@import url("default.css?v230720");
+@import url("main.css?v230429");
+@import url("contents.css?v230428");
+@import url("support.css?v230428");
+@import url("mypage.css?v230428");
+@import url("pop.css?v230428");
+@import url("educps.css?v230428");
+@import url("member.css?v230428");
+@import url("group.css?v230428");
+@import url("etc.css?v230428");
+@import url("refund.css?v230428");
+@import url("menu.css?v230428");
+@import url("player.css?v230516");
+
+
+/* layer */
+.layer_black { position:absolute; top:0; left:0; z-index:200; width:100%; margin:0 auto; height:100%; background:#000; opacity:0.8; filter: alpha(opacity=80); display:;}
+
+.layerArea { position:relative; z-index:201; background:#fff; border:solid 5px #f5f5f5; margin:0 auto; font-size:15px; min-width:540px;}
+.layerArea .close { position:absolute; top:9px; right:9px;}
+.layerArea h5 { color:#0f6caf; font-size:16px; font-weight:bold;}
+.layerArea .title { background:#666; padding:11px 20px 12px 20px; color:#fff; font-weight:bold; font-size:17px; text-align:left; letter-spacing:-0.04em;}
+.layerArea .infoArea { padding:20px; background:#fff; line-height:22px;}
+.layerArea .infoArea .lecLine { text-align:center; border-bottom:solid 1px #e9e9e9; padding-bottom:15px;}
+.layerArea .infoArea .lecLine .lecT { color:#0f6caf; font-size:17px; font-weight:bold;}
+.layerArea .infoArea .info { text-align:left;}
+.layerArea .infoArea .clipInfo { text-align:left; line-height:1.7em;}
+.layerArea .infoArea .clipInfo h5 { background:#0f6caf; color:#fff; text-align:center; padding:3px 0; margin-bottom:15px; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.layerArea .infoArea .clipInfo li { margin-top:30px;}
+.layerArea .infoArea .clipInfo li:first-child { margin-top:0;}
+.layerArea .infoArea .clipInfo li:last-child { border-bottom:none;}
+.layerArea .pan_reg { width:100%; margin:0 auto; border-top:solid 1px #e9e9e9;}
+.layerArea .pan_reg th { padding:10px 5px; text-align:center; font-size:14px; color:#555; line-height:19px; background:#f3f3f3; border-bottom:solid 1px #e2e2e2; border-right:solid 1px #e2e2e2;}
+.layerArea .pan_reg th:last-child { border-right:none;}
+.layerArea .pan_reg td { padding:10px; border-bottom:solid 1px #e2e2e2;}
+.layerArea .pan_reg strong { color:#777;}
+.layerArea .pan_reg .item { color:#0f6caf; font-size:14px; font-weight:bold;}
+.layerArea .conwrite { padding:10px; border-bottom:solid 1px #e2e2e2;}
+.layerArea input,
+.layerArea select { height:30px; vertical-align:middle;}
+.layerArea textarea { line-height:1.5em;}
+.layerArea .checkradio { width:17px; height:17px; vertical-align:middle; margin-right:3px; border:none;}
+.layerArea .comment_1 { position:relative; color:#777; line-height:1.5em; font-size:14px;}
+.layerArea .comment_1 li { margin-top:3px; padding-left:8px;}
+.layerArea .mycheck { position:relative; margin-top:25px; font-size:0;}
+.layerArea .mycheck li { margin:0 15px; display:inline-block;}
+.layerArea .mycheck li a { border:solid 1px #e2e2e2; padding:10px; display:inline-block; -webkit-border-radius:12px; -moz-border-radius:12px; border-radius:12px;}
+.layerArea .mycheck li a:hover { background:#e2e2e2;}
+.layerArea .survey { position:relative; margin-top:-20px; text-align:left;}
+.layerArea .survey ol { margin-top:25px; border-bottom:solid 1px #ebebeb; padding-bottom:25px;}
+.layerArea .survey ol p { font-weight:bold; font-size:16px; color:#0f6caf; margin-bottom:10px;}
+.layerArea .survey ol li { position:relative; margin-top:10px; padding-left:22px;}
+.layerArea .survey ol li span { position:absolute; top:3px; left:0;}
+.layerArea .survey ol li input { width:17px; height:17px;}
+
+.layerArea .examResult { position:relative; text-align:left;}
+.layerArea .examResult .score { border-bottom:solid 1px #ebebeb; padding-bottom:20px; font-weight:bold;}
+.layerArea .examResult .score ul { border:solid 2px #0f6caf; border-left:none; display:table; margin:0 auto;}
+.layerArea .examResult .score ul li { border-left:solid 2px #0f6caf; width:150px; font-size:16px; line-height:2em; text-align:center; display:table-cell;}
+.layerArea .examResult .score ul li strong { background:#f5f5f5; width:150px; font-size:13px; color:#777; display:inline-block;border-bottom:solid 1px #1e7cbf;}
+.layerArea .examResult ol { margin-top:25px; border-bottom:solid 1px #ebebeb; padding-bottom:25px;}
+.layerArea .examResult ol em { background:#0f97af; color:#fff; width:55px; padding:8px 0; font-size:13px; font-style:normal; line-height:normal; text-align:center; display:inline-block; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.layerArea .examResult .testQ { margin-top:10px; color:#0f6caf; font-size:17px; font-weight:bold;}
+.layerArea .examResult .infoTxt { margin-top:10px; background:#eaeaea; padding:5px 10px; margin-bottom:15px;}
+.layerArea .examResult .infoTxt span { margin-right:20px;}
+.layerArea .examResult ol li { position:relative; margin-top:10px; padding-left:22px;}
+/*.layerArea .examResult ol li span { position:absolute; top:3px; left:0;}*/
+.layerArea .examResult ol li span { position:absolute; top:-1px; left:0;}
+.layerArea .examResult ol li input { width:17px; height:17px;}
+.layerArea .examResult .resulTxt { margin-top:20px; border:solid 1px #aaaaaa; padding:20px; font-size:14px;}
+.layerArea .examResult .resulTxt .point { margin:-20px -20px 0 -20px; background:#aaaaaa; margin-bottom:15px; padding:5px 0; font-size:14px; color:#fff; font-weight:bold; text-align:center;}
+.layerArea:after{ content:""; display:block; clear:both;}
+
+
+
+
+/* popup */
+.popupArea { position:relative; width:100%; margin:0 auto; text-align:left;}
+.popupArea .close { position:absolute; top:10px; right:10px;}
+.popupArea .popName { background:#0f6caf; padding:10px 50px 10px 20px; font-weight:bold; color:#fff; font-size:21px;}
+.popupArea .infoArea { padding:20px;}
+.popupArea .infoArea .managerTxt { text-align:center;}
+.popupArea .infoArea .managerTxt .term { background:#555; margin-bottom:15px; padding:10px 20px; font-size:17px; color:#fff; font-weight:bold; letter-spacing:-0.03em; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px; display:inline-block;}
+.popupArea .infoArea .managerTxt span { margin:0 10px;}
+.popupArea .infoArea .managerTxt em { color:#0f97af; font-style:normal; font-weight:bold;}
+.popupArea .infoArea .managerTxt .title { margin-top:20px; border-bottom:solid 1px #e2e2e2; border-top:solid 1px #e2e2e2; padding:10px 0; font-size:17px; color:#000; font-weight:bold; line-height:26px;}
+.popupArea .search {}
+.popupArea .search input,
+.popupArea .search select { height:32px; font-size:14px;}
+.popupArea .search .btn { vertical-align:top; text-align:center; line-height:1em;}
+.popupArea .search .btn a { background:#aaaaaa; width:80px; height:32px; padding-top:9px; color:#fff; font-size:14px; font-weight:bold; text-decoration:none; display:inline-block; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;}
+.popupArea .search .btn a:hover { background:#888;}
+.popupArea .taList_ty01 { font-size:14px;}
+.popupArea .taList_ty01 tr:hover { background:#fffde6;}

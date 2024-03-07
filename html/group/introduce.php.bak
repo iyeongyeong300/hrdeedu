@@ -1,0 +1,74 @@
+<?
+include "../include/include_top.php";
+?>
+        
+        <!-- Container -->
+        <div id="container">
+        	
+			<!-- Content -->
+            <div class="Content">
+            
+            	<!-- left -->
+            	<?
+				include "../group/include_group.php";
+				?>
+                <!-- left // -->
+                
+                <!-- content area -->
+                <div class="contentArea" id="ContentGo">
+                
+                	<!-- page Title -->
+                	<div class="titleZone">
+                    	<h3>교육원소개</h3>
+                        <!-- here -->
+                        <div class="here"><a href="/">Home</a> > 교육원소개 > 교육원소개</div>
+                        <!-- here // -->
+                	</div>
+                    <!-- page Title // -->
+                    
+                    <!-- info area -->
+                    <div class="conInfoArea">
+                    	<!-- area -->
+                        
+                        <p class="tc"><img src="../images/sub/group_introduce_img01.png" alt="미래 지식기반 사회의 선두주자를 양성하는 교육기관
+저희 HRD에셋평생교육원은 지식기반 사회의 기틀을 마련하기 위해 노력하는 교육기관이 될 수 있도록 항상 최선을 다하는 모습을 보여드리겠습니다.
+1. 체계적인 교육 컨텐츠 
+2. 최고의 교수진
+3. 성실한 학습 지원
+4. 보다 빠른 학위취득" /></p>
+
+						<div class="groupIntro">
+							<p class="pb10"><img src="../images/sub/group_introduce_img02.png" alt="교육은 평생의 동반자입니다." /></p>
+							<p>인간은 태어나자마자 교육이 시작됩니다. 배움은 인간의 기본 도리를 익히게 하고 또한 무한한 힘을 줍니다. 그러기 위해서는 부모와 스승의 자애와 엄격한 가르침이 필요합니다.</p>
+                            <p>또한 주변의 훌륭한 이들이 스승이 되어야 합니다. 꼭 대성하기 위하여 교육을 받는 것은 아닙니다. 인간답게 살기 위해서 교육은 필요한 것입니다.</p>
+                            <p>평생교육은 개인이 평생을 통해 스스로 가진 다방면의 소질을 개발하고 자아실현을 목표로 정진하며 또한 사회발전에 이바지 할 수 있도록 참여할 수 있는 교육입니다.</p>
+                            <p>갈수록 새로운 지식과 기술을 요구하는 시대에 발 맞춰나가기 위해서 평생교육은 필요합니다.<br />
+                            본 교육원은 때로는 엄격한 스승으로 때로는 항상 옆에서 힘을 주는 친구로 평생의 동반자가 되겠습니다.</p>
+                            
+                            <p class="pt30 pb10"><img src="../images/sub/group_introduce_img03.png" alt="한국어교사원격평생교육원에만 있습니다." /></p>
+							<p>HRD에셋 평생교육원은 한국어교원양성을 전문으로 하는 교육기관입니다.</p>
+                            <p>본 교육원은 학점은행 원격사이버강의 교육과정을 편성하여 학위취득을 목적으로 효율적인 학사관리 시스템을 구축하고 있습니다.<br />
+                            특히 한국어 교사가 되고자 하는 학생 또는 일반인들에게 한국어교사자격증 취득을 위한 교육을 제공하여 어디서든지 쉽게 학위를 취득할 수 있도록 최상의 서비스를 제공하고 있습니다.</p>
+                            <p>강사진은 석사학위 이상의 학력을 지니고 한국어 교수법에 대한 교육을 받은 사람으로, 한국어에 대한 지식은 물론 풍부한 교육경험을 통한 효율적인 교실운영으로 학생들이 한국문화에 적응하는 데에 큰 도움을 주고 있습니다.</p>
+                            <p>본 교육원에서 학점을 이수하시면 한국어교원자격증 2급을 취득할 수 있습니다.<br />
+                            다양한 한국어교육기관에서 한국어 교사로 일할 수 있습니다. 국내뿐만이 아니라 해외에서 교사활동을 할 수 있으며 신문사, 출판사 등 다양한 분야로의 진출이 가능합니다.</p>
+                            
+                            <p class="pt30 tc"><img src="../images/sub/group_introduce_img04.png" alt="여러분의 건승을 기원합니다." /></p>
+                        </div>
+                        
+                        <!-- area // -->
+                    </div>
+                    <!-- info area // -->
+                
+                </div>
+                <!-- content area -->
+            
+            </div>
+            <!-- Content // -->
+            
+        </div>
+        <!-- Container // -->
+         
+<?
+include "../include/include_bottom.php";
+?>

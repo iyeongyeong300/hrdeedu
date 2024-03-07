@@ -1,0 +1,126 @@
+/* base css */
+
+.ve-menu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.ve-menu a {
+  float: left;
+  display: inline-block;
+  /*overflow: hidden;*/
+  width: 100%;
+  text-align: center;
+  /*white-space: nowrap;*/
+  text-decoration: none;
+  /*text-overflow: ellipsis;*/
+  color: #fff;
+}
+
+
+/* 一级菜单 */
+.ve-menu > .ve-menu-pc {display: flex;}
+.ve-menu > .ve-menu-pc > li {
+  /*line-height: 40px;*/
+    width: 280px;
+  position: relative;
+  
+  /*height: 40px;*/
+  cursor: pointer;
+}
+
+.ve-menu > .ve-menu-pc > li:hover ul {
+  display: block;
+}
+
+
+/* 二级菜单 */
+
+.ve-menu > .ve-menu-pc > li > ul {
+  position: absolute;
+  /*top: 40px;*/
+  left: 0;
+  display: none;
+    z-index: 999;
+}
+
+.ve-menu > .ve-menu-pc > li > ul > li {
+  height: 40px;
+}
+
+/* 移动端下的菜单 */
+
+/* 菜单按钮 */
+.ve-menu-icon {
+  float: right;
+  width: 40px;
+  height: 40px;
+  margin-top: 40px;
+  margin-right: 10px;
+  overflow: hidden;
+  /* 垂直居中用js动态计算 */
+}
+
+.ve-menu-icon > div {
+  width: 100%;
+  height: 3px;
+  margin-top: 8px;
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.ve-menu-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  /*background: #000;*/
+    z-index: 999;
+}
+
+/* 一级菜单 */
+.ve-menu-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /*color: #fff;*/
+  overflow: hidden;
+    z-index: 1000;
+}
+
+.ve-menu-mobile li {
+  width: 100%;
+  /*color: #fff;*/
+}
+
+.ve-menu-mobile li a {
+    font-size: 30px;
+  padding: 40px 0;
+  border-bottom: 1px solid #333;
+}
+
+/* 二级菜单 */
+.ve-menu-mobile ul {
+  display: none;
+}
+
+.ve-menu-mobile  ul li a {
+  /*background: #222;*/
+}
+
+.ve-menu-close {
+  overflow: hidden;
+}
+
+.ve-menu-close > div {
+  float: right;
+  padding: 30px 10px;
+}
+
+.ve-menu-close > div:after {
+  font-size: 70px;
+  content: '\00d7';
+}
+

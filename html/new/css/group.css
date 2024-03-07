@@ -1,0 +1,8 @@
+.location { }
+.location_contents_wrap { display: flex; justify-content: space-between; flex-wrap: wrap;}
+.location_contents_wrap .location_contents { margin-top:40px; width: 700px; }
+.location_contents .title { margin-top:40px; margin-bottom: 40px; font-size: 30px; font-weight: 500; letter-spacing: -1px;}
+.location_contents > ul {display: flex; justify-content: center; margin-top: 25px;}
+.location_contents > ul > .stitle { width: 120px; }
+.location_contents > ul > .stitle > span { padding:7px 20px 7px 20px; border-radius: 50px; background-color: #7161e3; color: #fff;}
+.location_contents > ul > .contents { flex-grow: 1; margin-left: 10px;}
